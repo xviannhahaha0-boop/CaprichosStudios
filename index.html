@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>✨ Caprichos Studio ✨ | Calculadora y Agenda de Citas de Belleza</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Cormorant Garamond (Luxury Serif), Great Vibes (Calligraphy), Plus Jakarta Sans (Clean UI) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        script: ['"Great Vibes"', 'cursive'],
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        obsidian: '#060606',
+                        charcoal: '#11100E',
+                        gold: {
+                            100: '#FBF5E6',
+                            200: '#F5E6BE',
+                            300: '#E6C776',
+                            400: '#D4AF37',
+                            500: '#B88E22',
+                            600: '#926D14',
+                            700: '#6D4F0C',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F7E7B4;
+            --gold-dark: #9A721C;
+        }
+
+        body {
+            background-color: #050505;
+            color: #FAF6F0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Canvas */
+        #luxury-bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Metallic Gold Text Gradient */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #FFF3CC 0%, #D4AF37 35%, #AA7C11 65%, #F9E8B2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shineText 6s linear infinite;
+        }
+
+        @keyframes shineText {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Metallic Gold Button */
+        .btn-gold {
+            background: linear-gradient(135deg, #DFBD52 0%, #B88A1E 45%, #D4AF37 75%, #F7E7B4 100%);
+            background-size: 200% auto;
+            color: #0A0805;
+            font-weight: 700;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 6px 25px -4px rgba(212, 175, 55, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+        }
+        .btn-gold:hover:not(:disabled) {
+            background-position: right center;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -3px rgba(212, 175, 55, 0.65), inset 0 1px 2px rgba(255, 255, 255, 0.7);
+        }
+        .btn-gold:active:not(:disabled) {
+            transform: translateY(0);
+        }
+        .btn-gold:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            filter: grayscale(40%);
+        }
+
+        /* Glassmorphic Luxury Cards */
+        .luxury-card {
+            background: linear-gradient(160deg, rgba(22, 19, 14, 0.88) 0%, rgba(11, 10, 8, 0.92) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.28);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(247, 231, 180, 0.12);
+        }
+
+        .luxury-card-bright {
+            background: linear-gradient(145deg, rgba(32, 26, 16, 0.94) 0%, rgba(14, 12, 9, 0.96) 100%);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.55);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.14), inset 0 1px 0 rgba(255, 243, 204, 0.25);
+        }
+
+        /* Custom Inputs & Selects */
+        .luxury-input {
+            background-color: rgba(10, 9, 7, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: #FAF6F0;
+            transition: all 0.25s ease;
+        }
+        .luxury-input:focus {
+            outline: none;
+            border-color: #F3E5AB;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.22);
+            background-color: rgba(16, 14, 10, 0.95);
+        }
+
+        /* Logo Shimmer Animation */
+        .logo-emblem {
+            filter: drop-shadow(0 8px 24px rgba(212, 175, 55, 0.28));
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .logo-emblem:hover {
+            transform: scale(1.03);
+        }
+
+        /* Time Slot Buttons */
+        .slot-btn {
+            transition: all 0.22s ease;
+        }
+        .slot-btn-available {
+            background: rgba(20, 17, 12, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: #FAF6F0;
+        }
+        .slot-btn-available:hover {
+            border-color: #D4AF37;
+            background: rgba(212, 175, 55, 0.15);
+            transform: translateY(-1px);
+        }
+        .slot-btn-selected {
+            background: linear-gradient(135deg, #DFBD52 0%, #B88A1E 100%);
+            color: #080705;
+            font-weight: 700;
+            border: 1px solid #FFF3CC;
+            box-shadow: 0 4px 18px rgba(212, 175, 55, 0.45);
+        }
+        .slot-btn-occupied {
+            background: rgba(24, 22, 20, 0.45);
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.26);
+            cursor: not-allowed;
+            position: relative;
+            overflow: hidden;
+        }
+        .slot-btn-occupied::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 12%;
+            right: 12%;
+            height: 1px;
+            background: rgba(212, 175, 55, 0.3);
+            transform: rotate(-12deg);
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070707;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3A2E14;
+            border-radius: 9999px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+
+        /* Subtle Floating Animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        .animate-float {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-gold-400 selection:text-black">
+
+    <!-- 1. ANIMATED GOLDEN VIDEO-STYLE CANVAS BACKGROUND -->
+    <canvas id="luxury-bg-canvas"></canvas>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="relative z-10 flex-1 flex flex-col">
+
+        <!-- TOP BAR / HEADER -->
+        <header class="border-b border-gold-400/25 bg-black/75 backdrop-blur-xl sticky top-0 z-40">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-2">
+                <!-- Mini Brand Identity -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="switchTab('calculadora')">
+                    <div class="w-10 h-10 rounded-full border border-gold-400/60 bg-black flex items-center justify-center shadow-md shadow-gold-400/10">
+                        <span class="font-script text-xl text-gold-gradient pr-0.5">AB</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] uppercase tracking-[0.25em] text-gold-300/80 font-medium">Belleza • Cuidado • Detalle</p>
+                        <h1 class="font-serif text-lg sm:text-xl font-semibold tracking-wide text-white leading-none">
+                            ✨ Caprichos <span class="text-gold-gradient">Studio</span> ✨
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Right Controls: Quick WhatsApp, Background Motion Toggle & Discreet Admin Lock -->
+                <div class="flex items-center gap-2">
+                    <button id="toggle-motion-btn" onclick="toggleCanvasMotion()" title="Activar/Pausar fondo en movimiento"
+                        class="p-2.5 rounded-full border border-gold-400/30 bg-charcoal/80 text-gold-300 hover:border-gold-400 hover:text-gold-100 transition text-xs flex items-center gap-1.5">
+                        <i id="motion-icon" class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span class="hidden md:inline text-[11px]">Fondo Vivo</span>
+                    </button>
+
+                    <a href="https://wa.me/528140161862?text=Hola%20Ana%2C%20me%20gustar%C3%ADa%20recibir%20informaci%C3%B3n%20sobre%20tus%20servicios%20de%20belleza%20%E2%9C%A8" 
+                       target="_blank" rel="noopener noreferrer"
+                       class="px-3 py-2 rounded-full border border-emerald-500/40 bg-emerald-950/50 text-emerald-300 hover:bg-emerald-900/60 transition text-xs font-medium flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span class="hidden sm:inline">WhatsApp</span>
+                    </a>
+
+                    <!-- Discreet Admin Mode Button (Protects Client Privacy!) -->
+                    <button id="admin-access-btn" onclick="handleAdminAccessClick()"
+                        class="px-3 py-2 rounded-full border border-gold-400/30 bg-charcoal/90 text-gold-200 hover:border-gold-400 transition text-xs font-medium flex items-center gap-1.5">
+                        <i id="admin-lock-icon" class="fa-solid fa-lock text-gold-400"></i>
+                        <span id="admin-btn-label" class="hidden sm:inline">Admin</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- HERO BRAND BANNER WITH EXACT RECREATED SVG EMBLEM -->
+        <section class="pt-6 pb-4 px-4 text-center relative overflow-hidden">
+            <div class="max-w-3xl mx-auto flex flex-col items-center">
+                
+                <!-- Custom SVG Recreation of Uploaded "AB Microblading Lashes & More" Emblem -->
+                <div class="w-40 h-40 sm:w-48 sm:h-48 mb-3 logo-emblem animate-float">
+                    <svg viewBox="0 0 300 300" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <!-- Rich Metallic Gold Gradients -->
+                            <linearGradient id="goldGradMain" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#FFF5D6" />
+                                <stop offset="22%" stop-color="#E5C158" />
+                                <stop offset="48%" stop-color="#B3841A" />
+                                <stop offset="75%" stop-color="#F1D37A" />
+                                <stop offset="100%" stop-color="#8A620E" />
+                            </linearGradient>
+                            <linearGradient id="goldGradStroke" x1="100%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#F7E3A1" />
+                                <stop offset="50%" stop-color="#C99E32" />
+                                <stop offset="100%" stop-color="#9B7012" />
+                            </linearGradient>
+                            <radialGradient id="obsidianCircle" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#15130F" />
+                                <stop offset="75%" stop-color="#080807" />
+                                <stop offset="100%" stop-color="#030303" />
+                            </radialGradient>
+
+                            <!-- Curved Text Paths -->
+                            <path id="topTextPath" d="M 56,150 A 94,94 0 1,1 244,150" />
+                            <path id="bottomTextPath" d="M 248,150 A 98,98 0 1,1 52,150" />
+                        </defs>
+
+                        <!-- Matte Black Circular Base -->
+                        <circle cx="150" cy="150" r="144" fill="url(#obsidianCircle)" />
+
+                        <!-- Outer Ornate Gold Rings -->
+                        <circle cx="150" cy="150" r="142" fill="none" stroke="url(#goldGradMain)" stroke-width="3.5" />
+                        <circle cx="150" cy="150" r="136" fill="none" stroke="url(#goldGradStroke)" stroke-width="1.2" stroke-dasharray="10 4 2 4" />
+                        <!-- Geometric fretwork pattern ring -->
+                        <circle cx="150" cy="150" r="130" fill="none" stroke="url(#goldGradMain)" stroke-width="4.5" stroke-dasharray="2 6" />
+                        <circle cx="150" cy="150" r="124" fill="none" stroke="url(#goldGradStroke)" stroke-width="1.5" />
+                        <circle cx="150" cy="150" r="119" fill="none" stroke="url(#goldGradMain)" stroke-width="0.75" stroke-dasharray="6 4" />
+
+                        <!-- Curved Top Text: MICROBLADING -->
+                        <text fill="url(#goldGradMain)" font-family="'Plus Jakarta Sans', sans-serif" font-size="13.5" font-weight="600" letter-spacing="6.5">
+                            <textPath href="#topTextPath" startOffset="50%" text-anchor="middle">
+                                MICROBLADING
+                            </textPath>
+                        </text>
+
+                        <!-- Curved Bottom Text: LASHES & MORE -->
+                        <text fill="url(#goldGradMain)" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" font-weight="600" letter-spacing="5.5">
+                            <textPath href="#bottomTextPath" startOffset="50%" text-anchor="middle">
+                                LASHES &amp; MORE
+                            </textPath>
+                        </text>
+
+                        <!-- Decorative Side Diamonds -->
+                        <polygon points="44,150 48,146 52,150 48,154" fill="url(#goldGradMain)" />
+                        <polygon points="248,150 252,146 256,150 252,154" fill="url(#goldGradMain)" />
+
+                        <!-- Center Calligraphic Monogram "AB" -->
+                        <g fill="none" stroke="url(#goldGradMain)" stroke-linecap="round" stroke-linejoin="round">
+                            <!-- Stylized Calligraphic 'A' -->
+                            <path d="M 82,190 C 108,162 146,105 162,78 C 154,116 144,162 138,196" stroke-width="4.2" />
+                            <!-- Sweeping Crossbar Loop of 'A' -->
+                            <path d="M 186,125 C 135,118 68,146 76,166 C 84,184 148,156 195,142" stroke-width="3.2" />
+                            <!-- Stylized Calligraphic 'B' stem & loops -->
+                            <path d="M 172,118 C 164,148 155,180 148,206" stroke-width="4" />
+                            <path d="M 164,126 C 195,112 224,118 220,134 C 216,148 182,154 160,158 C 194,158 218,172 208,190 C 198,208 158,208 134,198 C 168,202 222,202 268,202" stroke-width="3.6" />
+                        </g>
+                    </svg>
+                </div>
+
+                <p class="text-[11px] sm:text-xs uppercase tracking-[0.35em] text-gold-300 font-semibold mb-1">
+                    BELLEZA • CUIDADO • DETALLE
+                </p>
+                <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight mb-2">
+                    <span class="text-gold-gradient">✨ Caprichos Studio ✨</span>
+                </h2>
+                <p class="text-sm sm:text-base text-stone-300 max-w-lg font-light">
+                    Tu espacio para brillar, cita a cita.
+                </p>
+            </div>
+        </section>
+
+        <!-- NAVIGATION PILLS (PUBLIC CLIENT TABS + ADMIN PROTECTED TABS) -->
+        <nav class="max-w-4xl mx-auto px-4 mb-6 w-full">
+            <div class="luxury-card rounded-2xl p-1.5 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+                <!-- Public Tab 1: Calculadora & Catálogo -->
+                <button onclick="switchTab('calculadora')" id="tab-btn-calculadora"
+                    class="nav-pill flex-1 sm:flex-initial px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-2 btn-gold">
+                    <i class="fa-solid fa-sparkles"></i>
+                    <span>Calculadora y Precios</span>
+                </button>
+
+                <!-- Public Tab 2: Agenda (Booking Calendar) -->
+                <button onclick="switchTab('agenda')" id="tab-btn-agenda"
+                    class="nav-pill flex-1 sm:flex-initial px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-2 text-stone-200 hover:text-gold-300 hover:bg-white/5">
+                    <i class="fa-regular fa-calendar-check"></i>
+                    <span>Agenda tu Cita</span>
+                </button>
+
+                <!-- ADMIN ONLY TABS (Hidden for regular clients so they NEVER see other clients' appointments!) -->
+                <button onclick="switchTab('agendadas')" id="tab-btn-agendadas"
+                    class="admin-only-tab hidden px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition items-center justify-center gap-2 text-stone-200 hover:text-gold-300 hover:bg-white/5">
+                    <i class="fa-solid fa-list-check text-gold-400"></i>
+                    <span>Citas agendadas</span>
+                    <span id="badge-agendadas" class="px-1.5 py-0.5 text-[10px] rounded-full bg-gold-400 text-black font-bold">0</span>
+                </button>
+
+                <button onclick="switchTab('realizadas')" id="tab-btn-realizadas"
+                    class="admin-only-tab hidden px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition items-center justify-center gap-2 text-stone-200 hover:text-gold-300 hover:bg-white/5">
+                    <i class="fa-solid fa-check-double text-emerald-400"></i>
+                    <span>Citas realizadas</span>
+                </button>
+
+                <button onclick="switchTab('ganancias')" id="tab-btn-ganancias"
+                    class="admin-only-tab hidden px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition items-center justify-center gap-2 text-stone-200 hover:text-gold-300 hover:bg-white/5">
+                    <i class="fa-solid fa-coins text-amber-300"></i>
+                    <span>Ganancias</span>
+                </button>
+
+                <button onclick="switchTab('editor')" id="tab-btn-editor"
+                    class="admin-only-tab hidden px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition items-center justify-center gap-2 text-stone-200 hover:text-gold-300 hover:bg-white/5">
+                    <i class="fa-solid fa-sliders text-gold-300"></i>
+                    <span>Editar Servicios</span>
+                </button>
+            </div>
+
+            <!-- Admin Mode Active Banner -->
+            <div id="admin-active-banner" class="hidden mt-3 px-4 py-2 rounded-xl bg-amber-950/60 border border-gold-400/50 text-gold-200 text-xs flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-gold-400"></i>
+                    <span><strong>Modo Administradora Activo (Ana Blancas):</strong> Estás viendo las pestañas privadas de clientes y finanzas. Las clientas solo ven "Calculadora" y "Agenda".</span>
+                </div>
+                <button onclick="logoutAdmin()" class="underline text-gold-300 hover:text-white font-semibold ml-3 shrink-0">
+                    Cerrar sesión Admin
+                </button>
+            </div>
+        </nav>
+
+        <!-- MAIN TAB VIEWS CONTAINER -->
+        <main class="max-w-5xl mx-auto px-4 pb-16 w-full flex-1">
+
+            <!-- =================================================================== -->
+            <!-- TAB 1: CALCULADORA Y CATÁLOGO INTERACTIVO ("SERVICIOS A TU MEDIDA") -->
+            <!-- =================================================================== -->
+            <section id="view-calculadora" class="space-y-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    
+                    <!-- LEFT COLUMN (7 cols): Interactive Step-by-Step Calculator -->
+                    <div class="lg:col-span-7 luxury-card rounded-3xl p-5 sm:p-7 space-y-5">
+                        <div class="border-b border-gold-400/20 pb-4 flex items-center justify-between">
+                            <div>
+                                <p class="text-[11px] uppercase tracking-[0.25em] text-gold-300 font-semibold">SERVICIOS A TU MEDIDA</p>
+                                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mt-0.5">SERVICIOS  ✨ </h3>
+                                <p class="text-xs sm:text-sm text-stone-400 mt-1">Elige tu categoría y prepara tu cita en unos pasos.</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-[11px] bg-gold-400/15 border border-gold-400/40 text-gold-200 font-medium">
+                                Paso 1 de 2
+                            </span>
+                        </div>
+
+                        <!-- Category Selector Pills -->
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-gold-200 mb-2">
+                                1. Selecciona el Sector / Categoría
+                            </label>
+                            <div id="category-pills-container" class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
+                                <!-- Populated dynamically by JS -->
+                            </div>
+
+                            <!-- Dropdown Categoría -->
+                            <select id="calc-category-select" onchange="onCategoryChange(this.value)"
+                                class="luxury-input w-full rounded-xl px-4 py-3 text-sm font-medium">
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+
+                        <!-- Service / Technique Dropdown -->
+                        <div>
+                            <label for="calc-service-select" class="block text-xs font-semibold uppercase tracking-wider text-gold-200 mb-2">
+                                2. Técnica / Servicio y Precio
+                            </label>
+                            <select id="calc-service-select" onchange="onServiceChange(this.value)"
+                                class="luxury-input w-full rounded-xl px-4 py-3 text-sm font-medium">
+                                <!-- Populated dynamically -->
+                            </select>
+                            <!-- Service Description Badge -->
+                            <div id="calc-service-desc" class="mt-2.5 px-3.5 py-2.5 rounded-xl bg-gold-400/10 border border-gold-400/25 text-xs text-stone-200 flex items-start gap-2">
+                                <i class="fa-solid fa-circle-info text-gold-400 mt-0.5"></i>
+                                <span id="calc-service-desc-text">Selecciona un servicio para ver los detalles de lo que incluye.</span>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Conditional Options for PESTAÑAS (Tamaño y Diseño) -->
+                        <div id="lash-custom-options" class="space-y-4 pt-1 border-t border-gold-400/15">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="calc-lash-size" class="block text-xs font-semibold uppercase tracking-wider text-gold-200 mb-1.5">
+                                        Tamaño de Pestañas
+                                    </label>
+                                    <select id="calc-lash-size" onchange="updateQuoteCalculation()" class="luxury-input w-full rounded-xl px-3.5 py-2.5 text-sm">
+                                        <option value="Corto">Corto (Natural y sutil)</option>
+                                        <option value="Mediano">Mediano (Equilibrado)</option>
+                                        <option value="Largo" selected>Largo (Mirada de impacto)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="calc-lash-design" class="block text-xs font-semibold uppercase tracking-wider text-gold-200 mb-1.5">
+                                        Diseño
+                                    </label>
+                                    <select id="calc-lash-design" onchange="updateQuoteCalculation()" class="luxury-input w-full rounded-xl px-3.5 py-2.5 text-sm">
+                                        <option value="Natural" selected>Natural</option>
+                                        <option value="Muñeca (Doll Eye)">Muñeca (Doll Eye)</option>
+                                        <option value="Gatito (Cat Eye)">Gatito (Cat Eye)</option>
+                                        <option value="Abierto">Abierto</option>
+                                        <option value="Personalizado">Personalizado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <p class="text-xs text-stone-400 italic flex items-center gap-1.5">
+                                <i class="fa-solid fa-check text-gold-400"></i>
+                                Tamaño y diseño no modifican el precio indicado del servicio.
+                            </p>
+                        </div>
+
+                        <!-- Dynamic Conditional Option for DELINEADO DE PÁRPADO (Línea Extra +$250) -->
+                        <div id="eyeliner-extra-option" class="hidden pt-2 border-t border-gold-400/15">
+                            <label class="flex items-center justify-between p-3.5 rounded-xl bg-gold-400/10 border border-gold-400/40 cursor-pointer hover:bg-gold-400/15 transition">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="calc-extra-line-check" onchange="updateQuoteCalculation()"
+                                        class="w-5 h-5 accent-amber-500 rounded cursor-pointer">
+                                    <div>
+                                        <span class="text-sm font-semibold text-white block">Añadir Línea Extra al Delineado</span>
+                                        <span class="text-xs text-gold-300">Complemento para delineado de párpado</span>
+                                    </div>
+                                </div>
+                                <span class="text-sm font-bold text-gold-300">+$250 MXN</span>
+                            </label>
+                        </div>
+
+                        <!-- Dynamic Note for UÑAS (WhatsApp photo quote button) -->
+                        <div id="nails-custom-note" class="hidden pt-2 border-t border-gold-400/15">
+                            <div class="p-4 rounded-2xl bg-gradient-to-r from-amber-950/60 to-stone-900/90 border border-gold-400/40 space-y-3">
+                                <p class="text-xs text-gold-200 leading-relaxed">
+                                    <strong class="text-gold-300">* Nota importante de Uñas:</strong> Los precios listados corresponden a diseños sencillos o tonos lisos. <strong>Diseños más elaborados cotizar con foto por WhatsApp.</strong>
+                                </p>
+                                <a href="https://wa.me/528140161862?text=Hola%20Ana%20%E2%9C%A8%2C%20te%20env%C3%ADo%20foto%20del%20dise%C3%B1o%20de%20u%C3%B1as%20que%20me%20gustar%C3%ADa%20cotizar%3A"
+                                   target="_blank" rel="noopener noreferrer"
+                                   class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition shadow-md">
+                                    <i class="fa-brands fa-whatsapp text-base"></i>
+                                    <span>Enviar foto de diseño por WhatsApp</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Note for ALACIADOS -->
+                        <div id="hair-custom-note" class="hidden pt-2 border-t border-gold-400/15">
+                            <div class="p-3.5 rounded-xl bg-amber-950/40 border border-gold-400/35 text-xs text-gold-200 flex items-start gap-2.5">
+                                <i class="fa-solid fa-triangle-exclamation text-gold-400 mt-0.5"></i>
+                                <span><strong>* Nota sobre Alaciados:</strong> El precio puede cambiar si es abundante cabello o largo a la cintura.</span>
+                            </div>
+                        </div>
+
+                        <!-- Option to Combine Multiple Services in the Same Appointment -->
+                        <div class="pt-3 border-t border-gold-400/20 flex flex-wrap items-center justify-between gap-2">
+                            <span class="text-xs text-stone-400">¿Deseas realizarte más de un servicio en tu cita?</span>
+                            <button type="button" onclick="addCurrentServiceToCart()"
+                                class="px-3.5 py-2 rounded-xl border border-gold-400/50 bg-gold-400/10 hover:bg-gold-400/20 text-gold-200 text-xs font-semibold transition flex items-center gap-1.5">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Sumar otro servicio a mi cita</span>
+                            </button>
+                        </div>
+
+                        <!-- Multi-service Cart List -->
+                        <div id="multi-service-cart-box" class="hidden p-3.5 rounded-2xl bg-black/60 border border-gold-400/30 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold uppercase tracking-wider text-gold-300">Servicios seleccionados para tu cita:</span>
+                                <button onclick="clearServiceCart()" class="text-[11px] text-rose-400 hover:underline">Limpiar lista</button>
+                            </div>
+                            <ul id="multi-service-list" class="space-y-1.5 text-xs"></ul>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN (5 cols): TU COTIZACIÓN CARD -->
+                    <div class="lg:col-span-5 space-y-5 lg:sticky lg:top-20">
+                        <div class="luxury-card-bright rounded-3xl p-6 sm:p-7 space-y-5 relative overflow-hidden">
+                            <div class="w-32 h-32 rounded-full bg-gold-400/10 blur-2xl absolute -top-10 -right-10 pointer-events-none"></div>
+
+                            <div>
+                                <p class="text-[11px] uppercase tracking-[0.3em] text-gold-300 font-semibold">TU COTIZACIÓN</p>
+                                <p id="quote-service-summary" class="text-sm text-stone-200 font-medium mt-1">Pestañas • Clásicas</p>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-black/65 border border-gold-400/30 flex items-baseline justify-between">
+                                <span class="text-xs uppercase tracking-wider text-stone-400">Costo del servicio</span>
+                                <span id="quote-total-display" class="font-serif text-4xl sm:text-5xl font-bold text-gold-gradient">$350.00</span>
+                            </div>
+
+                            <!-- Anticipo Input (Minimum $50 MXN) -->
+                            <div>
+                                <div class="flex items-center justify-between mb-1.5">
+                                    <label for="calc-deposit-input" class="text-xs font-semibold uppercase tracking-wider text-gold-200">
+                                        Anticipo a dejar ($)
+                                    </label>
+                                    <span class="text-[11px] px-2 py-0.5 rounded-full bg-gold-400/20 text-gold-200 font-semibold">
+                                        Mínimo $50.00 MXN
+                                    </span>
+                                </div>
+                                <div class="relative">
+                                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gold-400 font-bold">$</span>
+                                    <input type="number" id="calc-deposit-input" min="50" step="50" value="50"
+                                        oninput="updateQuoteCalculation()"
+                                        class="luxury-input w-full rounded-xl pl-8 pr-4 py-3 text-base font-bold text-white">
+                                </div>
+                                <p id="deposit-warning-msg" class="hidden text-xs text-rose-400 mt-1.5 flex items-center gap-1">
+                                    <i class="fa-solid fa-circle-exclamation"></i>
+                                    <span>Para reservar se solicita un anticipo mínimo de $50 MXN.</span>
+                                </p>
+                            </div>
+
+                            <!-- Remaining Balance -->
+                            <div class="pt-3 border-t border-gold-400/25 flex items-center justify-between">
+                                <span class="text-sm text-stone-300 font-medium">Saldo pendiente el día de tu cita</span>
+                                <span id="quote-remaining-display" class="text-xl font-bold text-gold-300">$300.00</span>
+                            </div>
+
+                            <!-- Policies Mini Summary -->
+                            <div class="p-3.5 rounded-xl bg-black/50 border border-gold-400/20 text-[11px] text-stone-300 space-y-1">
+                                <div class="flex items-center gap-2 text-gold-300 font-semibold">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span>15 minutos de tolerancia en tu cita</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-stone-400">
+                                    <i class="fa-solid fa-shield-heart text-gold-400"></i>
+                                    <span>Si cancelas o cambias de día, no se reembolsa el anticipo.</span>
+                                </div>
+                            </div>
+
+                            <!-- Proceed to Calendar Button -->
+                            <button onclick="proceedToSchedule()" class="btn-gold w-full py-4 rounded-2xl text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2">
+                                <span>Elegir fecha y horario</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMPLETE VISUAL MENU BY SECTORS -->
+                <div class="pt-4">
+                    <div class="text-center mb-6">
+                        <p class="text-[11px] uppercase tracking-[0.3em] text-gold-300 font-semibold">MENÚ COMPLETO DE SERVICIOS</p>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mt-1">Explora Nuestros Sectores y Precios</h3>
+                        <p class="text-xs sm:text-sm text-stone-400 mt-1">Toca cualquier servicio para cargarlo automáticamente en tu cotización o agendar.</p>
+                    </div>
+
+                    <div id="full-catalog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                        <!-- Dynamically rendered sector cards -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================================================================== -->
+            <!-- TAB 2: AGENDA TU CITA (CALENDARIO INTERACTIVO Y RESERVA PRIVADA)    -->
+            <!-- =================================================================== -->
+            <section id="view-agenda" class="hidden space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+                    <!-- LEFT COLUMN (7 cols): Interactive Calendar & Time Slots -->
+                    <div class="lg:col-span-7 luxury-card rounded-3xl p-5 sm:p-7 space-y-6">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-gold-400/20 pb-4">
+                            <div>
+                                <p class="text-[11px] uppercase tracking-[0.25em] text-gold-300 font-semibold">PASO 2 • DISPONIBILIDAD EN TIEMPO REAL</p>
+                                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">Reserva tu momento</h3>
+                                <p class="text-xs text-stone-400 mt-0.5">Selecciona una fecha y un horario disponible.</p>
+                            </div>
+                            <button onclick="switchTab('calculadora')" class="text-xs text-gold-300 hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-arrow-left"></i> Cambiar servicio
+                            </button>
+                        </div>
+
+                        <!-- Calendar Month Header -->
+                        <div class="flex items-center justify-between bg-black/60 border border-gold-400/30 rounded-2xl px-4 py-3">
+                            <button type="button" onclick="changeCalendarMonth(-1)"
+                                class="w-9 h-9 rounded-xl border border-gold-400/30 hover:border-gold-400 flex items-center justify-center text-gold-300 transition">
+                                <i class="fa-solid fa-chevron-left text-xs"></i>
+                            </button>
+                            <div class="text-center">
+                                <h4 id="calendar-month-label" class="font-serif text-xl sm:text-2xl font-bold text-gold-gradient capitalize">
+                                    Noviembre de 2026
+                                </h4>
+                            </div>
+                            <button type="button" onclick="changeCalendarMonth(1)"
+                                class="w-9 h-9 rounded-xl border border-gold-400/30 hover:border-gold-400 flex items-center justify-center text-gold-300 transition">
+                                <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+
+                        <!-- Days of Week Header -->
+                        <div>
+                            <div class="grid grid-cols-7 gap-1 text-center text-[11px] font-bold uppercase tracking-wider text-gold-300/80 mb-2">
+                                <div>L</div><div>M</div><div>M</div><div>J</div><div>V</div><div>S</div><div>D</div>
+                            </div>
+                            <!-- Calendar Days Grid -->
+                            <div id="calendar-days-grid" class="grid grid-cols-7 gap-1.5 sm:gap-2">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Horarios Section -->
+                        <div class="pt-4 border-t border-gold-400/20 space-y-3">
+                            <div class="flex flex-wrap items-center justify-between gap-2">
+                                <h5 class="text-sm font-bold uppercase tracking-wider text-gold-200 flex items-center gap-2">
+                                    <i class="fa-regular fa-clock text-gold-400"></i>
+                                    <span>Horarios para <span id="selected-date-human" class="text-white underline decoration-gold-400">7 nov 2026</span></span>
+                                </h5>
+                                <!-- Legend -->
+                                <div class="flex flex-wrap items-center gap-3 text-[11px]">
+                                    <span class="flex items-center gap-1 text-stone-300">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-gold-400 inline-block"></span> Disponible
+                                    </span>
+                                    <span class="flex items-center gap-1 text-amber-300">
+                                        <span class="w-2 h-2 rounded-full bg-gold-400 inline-block"></span> Con citas
+                                    </span>
+                                    <span class="flex items-center gap-1 text-rose-400">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> Día Lleno
+                                    </span>
+                                    <span class="flex items-center gap-1 text-stone-500">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-stone-700 inline-block"></span> Horario Ocupado
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Time Slots Grid (7am to 10pm) -->
+                            <div id="time-slots-grid" class="grid grid-cols-3 sm:grid-cols-3 gap-2.5">
+                                <!-- Populated dynamically -->
+                            </div>
+
+                            <p class="text-[11px] text-stone-400 italic">
+                                <i class="fa-solid fa-lock text-gold-400/80 mr-1"></i>
+                                Por privacidad de nuestras clientas, los horarios reservados se muestran únicamente como "Ocupado".
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN (5 cols): Booking Details Form & Policies Legend -->
+                    <div class="lg:col-span-5 luxury-card-bright rounded-3xl p-5 sm:p-7 space-y-4">
+                        <div class="border-b border-gold-400/25 pb-3">
+                            <p class="text-[11px] uppercase tracking-[0.25em] text-gold-300 font-semibold">CONFIRMACIÓN</p>
+                            <h4 class="font-serif text-2xl font-bold text-white">Detalles de la cita</h4>
+                        </div>
+
+                        <form id="booking-form" onsubmit="handleConfirmBooking(event)" class="space-y-4">
+                            <!-- Client Name -->
+                            <div>
+                                <label class="block text-xs font-semibold text-gold-200 mb-1">Nombre de la clienta *</label>
+                                <input type="text" id="form-client-name" required placeholder="Ej. Ana Karen Blancas"
+                                    class="luxury-input w-full rounded-xl px-3.5 py-2.5 text-sm">
+                            </div>
+
+                            <!-- Client Phone / WhatsApp -->
+                            <div>
+                                <label class="block text-xs font-semibold text-gold-200 mb-1">Número de celular / WhatsApp *</label>
+                                <input type="tel" id="form-client-phone" required placeholder="Ej. 814 016 1862"
+                                    class="luxury-input w-full rounded-xl px-3.5 py-2.5 text-sm">
+                            </div>
+
+                            <!-- Client Email -->
+                            <div>
+                                <label class="block text-xs font-semibold text-gold-200 mb-1">Tu correo electrónico <span class="text-stone-400 font-normal">(Opcional, para calendario)</span></label>
+                                <input type="email" id="form-client-email" placeholder="tucorreo@ejemplo.com"
+                                    class="luxury-input w-full rounded-xl px-3.5 py-2.5 text-sm">
+                            </div>
+
+                            <!-- Selected Date & Time Readout -->
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gold-200 mb-1">Fecha elegida</label>
+                                    <input type="text" id="form-date-display" readonly
+                                        class="luxury-input w-full rounded-xl px-3 py-2 text-xs font-semibold text-gold-300 bg-black/70">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gold-200 mb-1">Horario elegido *</label>
+                                    <input type="text" id="form-time-display" readonly placeholder="Elige un horario"
+                                        class="luxury-input w-full rounded-xl px-3 py-2 text-xs font-bold text-gold-300 bg-black/70">
+                                </div>
+                            </div>
+
+                            <!-- Selected Service Selector in Form -->
+                            <div>
+                                <label class="block text-xs font-semibold text-gold-200 mb-1">Servicio(s) a realizar</label>
+                                <select id="form-service-quick-select" onchange="onFormServiceQuickChange(this.value)"
+                                    class="luxury-input w-full rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-medium">
+                                    <!-- Populated dynamically -->
+                                </select>
+                                <p id="form-custom-details-badge" class="text-[11px] text-gold-300 mt-1"></p>
+                            </div>
+
+                            <!-- Costo & Anticipo Row -->
+                            <div class="grid grid-cols-2 gap-3 pt-1">
+                                <div>
+                                    <label class="block text-xs font-semibold text-stone-300 mb-1">Costo Total ($)</label>
+                                    <input type="text" id="form-cost-display" readonly
+                                        class="luxury-input w-full rounded-xl px-3.5 py-2.5 text-sm font-bold text-white bg-black/60">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gold-300 mb-1">Anticipo ($ mín. $50) *</label>
+                                    <input type="number" id="form-deposit-input" min="50" step="50" required value="50"
+                                        oninput="syncDepositFromForm(this.value)"
+                                        class="luxury-input w-full rounded-xl px-3.5 py-2.5 text-sm font-bold text-gold-200">
+                                </div>
+                            </div>
+
+                            <!-- Summary Bar -->
+                            <div class="px-4 py-2.5 rounded-xl bg-black/70 border border-gold-400/30 flex items-center justify-between text-xs">
+                                <span>Horario: <strong id="summary-bar-time" class="text-gold-300">--</strong></span>
+                                <span>Saldo pendiente: <strong id="summary-bar-balance" class="text-gold-300">$0.00</strong></span>
+                            </div>
+
+                            <!-- MANDATORY POLICY LEGEND BOX -->
+                            <div class="p-4 rounded-2xl bg-gradient-to-br from-amber-950/70 via-black/85 to-amber-950/50 border-2 border-gold-400/60 space-y-2.5 shadow-lg">
+                                <div class="flex items-center gap-2 text-gold-300 font-bold text-xs uppercase tracking-wider">
+                                    <i class="fa-solid fa-scroll text-gold-400"></i>
+                                    <span>Políticas Importantes de tu Cita</span>
+                                </div>
+                                <ul class="text-xs text-stone-200 space-y-1.5 leading-relaxed">
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-regular fa-clock text-gold-400 mt-0.5 shrink-0"></i>
+                                        <span><strong>Tolerancia:</strong> Se cuenta únicamente con <strong>15 minutos de tolerancia</strong> a partir de tu hora agendada.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-hand-holding-dollar text-gold-400 mt-0.5 shrink-0"></i>
+                                        <span><strong>Anticipo obligatorio:</strong> Se requiere un <strong>anticipo mínimo de $50.00 MXN</strong> para confirmar tu espacio.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i class="fa-solid fa-ban text-rose-400 mt-0.5 shrink-0"></i>
+                                        <span><strong>Cancelaciones o cambios:</strong> Si cancelas o cambias el día de tu cita, <strong>no se reembolsa el anticipo</strong>.</span>
+                                    </li>
+                                </ul>
+                                <label class="pt-2 border-t border-gold-400/25 flex items-start gap-2.5 cursor-pointer select-none">
+                                    <input type="checkbox" id="form-policy-accept" required
+                                        class="mt-0.5 w-4 h-4 accent-amber-500 rounded cursor-pointer">
+                                    <span class="text-[11px] text-gold-100 font-medium">
+                                        Estoy de acuerdo con los 15 min de tolerancia, el anticipo mínimo de $50 y que el anticipo no es reembolsable en caso de cancelar o cambiar de día.
+                                    </span>
+                                </label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" id="confirm-booking-btn"
+                                class="btn-gold w-full py-4 rounded-2xl text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-calendar-check"></i>
+                                <span>Confirmar cita y Sincronizar</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================================================================== -->
+            <!-- TAB 3: CITAS AGENDADAS (PRIVATE ADMIN ONLY - HIDDEN FROM CLIENTS)   -->
+            <!-- =================================================================== -->
+            <section id="view-agendadas" class="hidden space-y-6">
+                <div class="luxury-card rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="flex flex-wrap items-center justify-between gap-4 border-b border-gold-400/25 pb-4">
+                        <div>
+                            <span class="px-2.5 py-1 rounded-full bg-gold-400/20 text-gold-300 text-[10px] font-bold uppercase tracking-widest">
+                                Vista Privada de Administradora
+                            </span>
+                            <h3 class="font-serif text-3xl font-bold text-white mt-1">Citas agendadas</h3>
+                            <p class="text-xs sm:text-sm text-stone-400">Tu agenda privada siempre al día. Esta sección está oculta para tus clientas.</p>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button onclick="exportAllAppointmentsICS()"
+                                class="px-4 py-2.5 rounded-xl border border-gold-400/50 bg-gold-400/15 hover:bg-gold-400/25 text-gold-200 text-xs font-semibold transition flex items-center gap-2">
+                                <i class="fa-brands fa-apple text-sm"></i>
+                                <span>Sincronizar Todas al Calendario Celular (.ics)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="agendadas-list-container" class="space-y-4">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================================================================== -->
+            <!-- TAB 4: CITAS REALIZADAS (PRIVATE ADMIN ONLY)                        -->
+            <!-- =================================================================== -->
+            <section id="view-realizadas" class="hidden space-y-6">
+                <div class="luxury-card rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="border-b border-gold-400/25 pb-4">
+                        <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold uppercase tracking-widest">
+                            Historial Privado
+                        </span>
+                        <h3 class="font-serif text-3xl font-bold text-white mt-1">Citas realizadas</h3>
+                        <p class="text-xs sm:text-sm text-stone-400">Registro de servicios completados y liquidados.</p>
+                    </div>
+
+                    <div id="realizadas-list-container" class="space-y-4">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================================================================== -->
+            <!-- TAB 5: GANANCIAS (PRIVATE ADMIN ONLY)                               -->
+            <!-- =================================================================== -->
+            <section id="view-ganancias" class="hidden space-y-6">
+                <div class="luxury-card rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="border-b border-gold-400/25 pb-4">
+                        <span class="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 text-[10px] font-bold uppercase tracking-widest">
+                            Control Financiero
+                        </span>
+                        <h3 class="font-serif text-3xl font-bold text-white mt-1">Resumen de Ganancias</h3>
+                        <p class="text-xs sm:text-sm text-stone-400">Balance de anticipos recibidos, saldos pendientes por cobrar e ingresos totales.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="p-5 rounded-2xl bg-black/60 border border-emerald-500/35">
+                            <p class="text-xs uppercase tracking-wider text-stone-400">Total Citas Realizadas</p>
+                            <p id="fin-completed-total" class="font-serif text-3xl sm:text-4xl font-bold text-emerald-400 mt-1">$0.00</p>
+                            <p id="fin-completed-count" class="text-[11px] text-stone-400 mt-1">0 citas completadas</p>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-black/60 border border-gold-400/40">
+                            <p class="text-xs uppercase tracking-wider text-stone-400">Anticipos en Citas Activas</p>
+                            <p id="fin-deposits-total" class="font-serif text-3xl sm:text-4xl font-bold text-gold-300 mt-1">$0.00</p>
+                            <p class="text-[11px] text-stone-400 mt-1">Asegurados por adelantado</p>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-black/60 border border-amber-500/30">
+                            <p class="text-xs uppercase tracking-wider text-stone-400">Saldo Pendiente por Cobrar</p>
+                            <p id="fin-pending-total" class="font-serif text-3xl sm:text-4xl font-bold text-white mt-1">$0.00</p>
+                            <p id="fin-active-count" class="text-[11px] text-stone-400 mt-1">En 0 citas próximas</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =================================================================== -->
+            <!-- TAB 6: EDITAR SECTORES Y SERVICIOS (ADMIN ONLY)                     -->
+            <!-- =================================================================== -->
+            <section id="view-editor" class="hidden space-y-6">
+                <div class="luxury-card rounded-3xl p-6 sm:p-8 space-y-6">
+                    <div class="border-b border-gold-400/25 pb-4">
+                        <span class="px-2.5 py-1 rounded-full bg-gold-400/20 text-gold-300 text-[10px] font-bold uppercase tracking-widest">
+                            Personalización en Vivo
+                        </span>
+                        <h3 class="font-serif text-3xl font-bold text-white mt-1">Agregar o Editar Servicios y Categorías</h3>
+                        <p class="text-xs sm:text-sm text-stone-400">Añade nuevos servicios, modifica precios o crea nuevas categorías cuando lo necesites.</p>
+                    </div>
+
+                    <!-- Form to Add a New Service -->
+                    <form onsubmit="handleAddCustomService(event)" class="p-5 rounded-2xl bg-black/60 border border-gold-400/35 grid grid-cols-1 sm:grid-cols-4 gap-4 items-end">
+                        <div>
+                            <label class="block text-xs font-semibold text-gold-200 mb-1">Sector / Categoría</label>
+                            <input type="text" id="new-srv-cat" required list="existing-categories-list" placeholder="Ej. Pestañas o Facial"
+                                class="luxury-input w-full rounded-xl px-3.5 py-2.5 text-xs">
+                            <datalist id="existing-categories-list"></datalist>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gold-200 mb-1">Nombre del Servicio</label>
+                            <input type="text" id="new-srv-name" required placeholder="Ej. Efecto Rímel"
+                                class="luxury-input w-full rounded-xl px-3.5 py-2.5 text-xs">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gold-200 mb-1">Precio ($ MXN)</label>
+                            <input type="number" id="new-srv-price" required min="1" placeholder="450"
+                                class="luxury-input w-full rounded-xl px-3.5 py-2.5 text-xs">
+                        </div>
+                        <button type="submit" class="btn-gold py-2.5 px-4 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Añadir Servicio</span>
+                        </button>
+                    </form>
+
+                    <!-- Editable Services List -->
+                    <div id="admin-services-editor-list" class="space-y-4">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- LUXURY FOOTER -->
+        <footer class="border-t border-gold-400/20 bg-black/80 backdrop-blur-md py-6 px-4 text-center text-xs text-stone-400">
+            <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <span class="font-script text-xl text-gold-gradient">AB</span>
+                    <span><strong>✨ Caprichos Studio ✨</strong> — Belleza con intención</span>
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-4 text-stone-300">
+                    <a href="https://wa.me/528140161862" target="_blank" rel="noopener noreferrer" class="hover:text-gold-300 transition flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp text-emerald-400"></i> +52 814 016 1862
+                    </a>
+                    <a href="mailto:Ana.blancas061517@gmail.com" class="hover:text-gold-300 transition flex items-center gap-1.5">
+                        <i class="fa-regular fa-envelope text-gold-400"></i> Ana.blancas061517@gmail.com
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ======================================================================= -->
+    <!-- MODAL 1: BOOKING CONFIRMATION + WHATSAPP, EMAIL & CALENDAR SYNC HUB     -->
+    <!-- ======================================================================= -->
+    <div id="confirmation-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+        <div class="luxury-card-bright rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-5 relative my-8 border-2 border-gold-400">
+            <button onclick="closeConfirmationModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-stone-300">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center space-y-2">
+                <div class="w-16 h-16 rounded-full bg-gold-400/20 border border-gold-400 flex items-center justify-center mx-auto text-gold-300 text-2xl shadow-lg shadow-gold-400/20">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <p class="text-[11px] uppercase tracking-[0.3em] text-gold-300 font-bold">¡HORARIO RESERVADO Y BLOQUEADO!</p>
+                <h3 class="font-serif text-3xl font-bold text-white">Cita Lista para Confirmar</h3>
+                <p class="text-xs text-stone-300">
+                    Tu horario ya quedó bloqueado en la agenda. Envía tu comprobante de cita por WhatsApp y guárdala en tu calendario:
+                </p>
+            </div>
+
+            <!-- Ticket Summary -->
+            <div id="modal-ticket-details" class="p-4 rounded-2xl bg-black/75 border border-gold-400/40 text-xs space-y-2 text-stone-200">
+                <!-- Populated dynamically -->
+            </div>
+
+            <!-- Action Buttons: WhatsApp, Google Calendar, Apple/iPhone Calendar (.ics), Email -->
+            <div class="space-y-2.5">
+                <!-- 1. Direct WhatsApp -->
+                <a id="modal-wa-link" href="#" target="_blank" rel="noopener noreferrer"
+                   class="w-full py-3.5 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-600/30 transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>1. Enviar Confirmación por WhatsApp a Ana</span>
+                </a>
+
+                <!-- 2. Sync with Google Calendar & iPhone -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <a id="modal-gcal-link" href="#" target="_blank" rel="noopener noreferrer"
+                       class="py-3 px-3.5 rounded-xl border border-gold-400/50 bg-gold-400/15 hover:bg-gold-400/25 text-gold-100 font-semibold text-xs flex items-center justify-center gap-2 transition">
+                        <i class="fa-brands fa-google text-gold-300 text-sm"></i>
+                        <span>Añadir a Google Calendar</span>
+                    </a>
+
+                    <!-- 3. Sync with iPhone / Apple Calendar (.ics) -->
+                    <button type="button" id="modal-ics-btn"
+                        class="py-3 px-3.5 rounded-xl border border-gold-400/50 bg-gold-400/15 hover:bg-gold-400/25 text-gold-100 font-semibold text-xs flex items-center justify-center gap-2 transition">
+                        <i class="fa-brands fa-apple text-gold-300 text-base"></i>
+                        <span>Calendario iPhone / Celular</span>
+                    </button>
+                </div>
+
+                <!-- 4. Direct Email Notification -->
+                <a id="modal-mailto-link" href="#"
+                   class="w-full py-2.5 px-4 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 text-stone-200 font-medium text-xs flex items-center justify-center gap-2 transition">
+                    <i class="fa-regular fa-envelope text-gold-400"></i>
+                    <span>Enviar copia al correo (Ana.blancas061517@gmail.com)</span>
+                </a>
+                <p id="email-auto-status" class="text-[11px] text-center text-emerald-400"></p>
+            </div>
+
+            <button onclick="closeConfirmationModal()" class="w-full py-2.5 text-xs text-stone-400 hover:text-white underline">
+                Cerrar ventana
+            </button>
+        </div>
+    </div>
+
+    <!-- ======================================================================= -->
+    <!-- MODAL 2: ADMIN PIN UNLOCK MODAL (PRIVATE CODE, NO HINTS DISPLAYED)      -->
+    <!-- ======================================================================= -->
+    <div id="admin-pin-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+        <div class="luxury-card-bright rounded-3xl max-w-sm w-full p-6 space-y-4 relative border border-gold-400/60">
+            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-stone-400 hover:text-white">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center space-y-1">
+                <div class="w-12 h-12 rounded-full bg-gold-400/15 border border-gold-400/40 flex items-center justify-center mx-auto text-gold-400 text-lg">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <h4 class="font-serif text-2xl font-bold text-white">Acceso Administradora</h4>
+                <p class="text-xs text-stone-400">
+                    Área privada exclusiva para administración del estudio.
+                </p>
+            </div>
+
+            <form onsubmit="verifyAdminPin(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-semibold text-gold-200 mb-1 text-center">Ingresa tu código privado de acceso</label>
+                    <input type="password" id="admin-pin-input" required placeholder="••••" maxlength="8" autocomplete="off" inputmode="numeric"
+                        class="luxury-input w-full rounded-xl px-4 py-3 text-center text-xl tracking-[0.5em] font-bold">
+                </div>
+                <p id="admin-pin-error" class="hidden text-xs text-rose-400 text-center font-medium">
+                    Código incorrecto. Acceso exclusivo para la administradora.
+                </p>
+                <button type="submit" class="btn-gold w-full py-3 rounded-xl text-xs uppercase tracking-wider">
+                    Desbloquear Panel de Ana
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 max-w-sm"></div>
+
+    <!-- ======================================================================= -->
+    <!-- APPLICATION LOGIC & FIREBASE CLOUD REALTIME SYNC                        -->
+    <!-- ======================================================================= -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, addDoc, updateDoc, deleteDoc, onSnapshot, collection } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // ---------------------------------------------------------------------
+        // 1. EXACT CATALOG DATA
+        // ---------------------------------------------------------------------
+        const STUDIO_OWNER = {
+            name: "Ana Blancas",
+            studio: "Caprichos Studio",
+            email: "Ana.blancas061517@gmail.com",
+            phoneClean: "528140161862",
+            phoneDisplay: "+52 814 016 1862"
+        };
+
+        const INITIAL_CATALOG = [
+            {
+                id: "pestanas",
+                category: "Pestañas",
+                icon: "fa-solid fa-eye",
+                subtitle: "Extensiones y diseño de mirada (Incluye elección de tamaño y diseño)",
+                hasLashOptions: true,
+                services: [
+                    { id: "p-clasicas", name: "Clásicas (Aplicación nueva)", price: 350, desc: "Efecto rímel natural 1 a 1 para realzar tu mirada con elegancia." },
+                    { id: "p-clasicas-ret", name: "Clásicas — Retoque", price: 250, desc: "Mantenimiento de pestañas clásicas (recomendado cada 15-20 días)." },
+                    { id: "p-hibridas", name: "Híbridas (Aplicación nueva)", price: 450, desc: "Combinación perfecta entre técnica clásica y abanicos de volumen." },
+                    { id: "p-hibridas-ret", name: "Híbridas — Retoque", price: 350, desc: "Mantenimiento para conservar la densidad y diseño de tus híbridas." },
+                    { id: "p-hawaianas", name: "Hawaianas (Aplicación nueva)", price: 450, desc: "Efecto fresco, ligero y texturizado con fibras tecnológicas en Y." },
+                    { id: "p-hawaianas-ret", name: "Hawaianas — Retoque", price: 350, desc: "Retoque oportuno de set hawaiano para lucir siempre impecable." },
+                    { id: "p-anime", name: "Anime (Aplicación nueva)", price: 500, desc: "Diseño en picos definidos estilo muñeca japonesa de alta tendencia." },
+                    { id: "p-anime-ret", name: "Anime — Retoque", price: 400, desc: "Mantenimiento especializado de picos y estructura Anime." },
+                    { id: "p-volumen", name: "Volumen (Aplicación nueva)", price: 550, desc: "Máxima densidad, oscuridad y glamour con abanicos sedosos." },
+                    { id: "p-volumen-ret", name: "Volumen — Retoque", price: 400, desc: "Reposición de abanicos para mantener el volumen tupido." },
+                    { id: "p-retiro", name: "Retiro de pestañas", price: 100, desc: "Remoción segura y cuidadosa sin dañar tu pestaña natural." }
+                ]
+            },
+            {
+                id: "ceja-temporales",
+                category: "Ceja temporales",
+                icon: "fa-solid fa-wand-sparkles",
+                subtitle: "Diseño, laminado, pigmentación temporal y depilación",
+                services: [
+                    { id: "ct-laminado", name: "Laminado de ceja", price: 200, desc: "Alineación y fijación del vello para una ceja más poblada, estilizada y manejable." },
+                    { id: "ct-hd", name: "Ceja HD", price: 250, desc: "Diseño geométrico según tu rostro, sombreado temporal con henna/pigmento y depilación." },
+                    { id: "ct-4k", name: "Ceja 4k", price: 300, desc: "Laminado + diseño de alta definición + pigmentación híbrida e hidratación profunda." },
+                    { id: "ct-depilacion", name: "Depilación (bozo o ceja)", price: 70, desc: "Limpieza delicada de área de bozo o perfilado de ceja." }
+                ]
+            },
+            {
+                id: "permanentes",
+                category: "Permanentes",
+                icon: "fa-solid fa-pen-nib",
+                subtitle: "Micropigmentación profesional de cejas, ojos y labios",
+                services: [
+                    { id: "pm-ceja-trad", name: "Ceja tradicional", price: 850, desc: "Micropigmentación compacta y definida de larga duración." },
+                    { id: "pm-delineado", name: "Delineado de párpado", price: 850, hasExtraLine: true, desc: "Delineado permanente para enmarcar y dar profundidad a tus ojos (Opción de línea extra +$250)." },
+                    { id: "pm-delineado-extra", name: "Delineado de párpado + Línea extra", price: 1100, desc: "Delineado permanente completo con línea extra incluida ($850 + $250)." },
+                    { id: "pm-microblading", name: "Microblading", price: 1200, desc: "Técnica hiperrealista pelo a pelo para rellenar y dar forma natural a tus cejas." },
+                    { id: "pm-microshading", name: "Microshading", price: 1400, desc: "Fusión de trazos pelo a pelo (Microblading) con efecto polvo sombreado (Shading)." },
+                    { id: "pm-shading", name: "Shading", price: 1200, desc: "Efecto polvo o maquillaje suave degradado de alta definición." },
+                    { id: "pm-fulllips", name: "Full lips", price: 1100, desc: "Micropigmentación labial para dar color, simetría y vitalidad a tus labios." }
+                ]
+            },
+            {
+                id: "unas",
+                category: "Uñas",
+                icon: "fa-solid fa-hand-sparkles",
+                subtitle: "Uñas acrílicas, gelish y pedicura (*Diseños elaborados cotizar por WhatsApp)",
+                isNails: true,
+                services: [
+                    { id: "un-largo12", name: "Diseños sencillos o tonos lisos (Largo 1-2)", price: 400, desc: "Aplicación de uñas en largo 1 o 2 con tono liso o decoración sencilla." },
+                    { id: "un-largo34", name: "Diseños sencillos o tonos lisos (Largo 3-4)", price: 450, desc: "Aplicación de uñas en largo 3 o 4 con tono liso o diseño sencillo." },
+                    { id: "un-largo56", name: "Diseños sencillos o tonos lisos (Largo 5-6)", price: 500, desc: "Aplicación de uñas en largo 5 o 6 con tono liso o diseño sencillo." },
+                    { id: "un-gelish", name: "Gelish liso", price: 180, desc: "Esmaltado semipermanente en tono liso sobre uña natural con brillo duradero." },
+                    { id: "un-pedicura", name: "Pedicura", price: 300, desc: "Cuidado completo, limpieza, exfoliación y esmaltado para tus pies." }
+                ]
+            },
+            {
+                id: "alaciados",
+                category: "Alaciados",
+                icon: "fa-solid fa-crown",
+                subtitle: "Alaciado permanente profesional (*Precio puede variar si es abundante o cintura)",
+                isHair: true,
+                services: [
+                    { id: "al-hombro", name: "Alaciado — Largo al hombro", price: 600, desc: "Liso sedoso, brillante y libre de frizz para cabello al hombro." },
+                    { id: "al-media", name: "Alaciado — Largo media espalda", price: 700, desc: "Alaciado profesional nutritivo para largo a media espalda." },
+                    { id: "al-baja", name: "Alaciado — Largo espalda baja", price: 800, desc: "Alaciado profundo para cabello largo hasta espalda baja (*Puede variar por abundancia o cintura)." }
+                ]
+            }
+        ];
+
+        const TIME_SLOTS = [
+            "7am", "8am", "9am",
+            "10am", "11am", "12pm",
+            "1pm", "3pm", "4pm",
+            "5pm", "6pm", "7pm",
+            "8pm", "9pm", "10pm"
+        ];
+
+        const MONTH_NAMES = [
+            "enero", "febrero", "marzo", "abril", "mayo", "junio",
+            "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+        ];
+
+        // ---------------------------------------------------------------------
+        // 2. APPLICATION STATE
+        // ---------------------------------------------------------------------
+        let catalogData = loadSavedCatalog();
+        let selectedCategoryId = "pestanas";
+        let selectedServiceId = "p-clasicas";
+        let serviceCart = [];
+
+        // Calendar State (Inicializado con la fecha real del sistema)
+        const _initNow = new Date();
+        let currentCalYear = _initNow.getFullYear();
+        let currentCalMonth = _initNow.getMonth();
+        let selectedDateISO = `${_initNow.getFullYear()}-${String(_initNow.getMonth() + 1).padStart(2, '0')}-${String(_initNow.getDate()).padStart(2, '0')}`;
+        let selectedTimeSlot = "10am";
+
+        // Admin Privacy State (Clients CANNOT see appointments or PIN)
+        let isAdminUnlocked = false;
+        function isValidAdminPin(inputVal) {
+            if (!inputVal || inputVal.length !== 4) return false;
+            const codes = [48, 54, 49, 53];
+            return inputVal.split('').every((ch, idx) => ch.charCodeAt(0) === codes[idx]);
+        }
+
+        // Storage Keys & Persistent State (Garantiza guardado permanente de citas y catálogo)
+        const STORAGE_KEY_APPTS = 'caprichos_appointments_v1';
+        const STORAGE_KEY_CATALOG = 'caprichos_catalog_v1';
+
+        function loadSavedAppointments() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY_APPTS);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (Array.isArray(parsed)) return parsed;
+                }
+            } catch(e) { console.warn('Error leyendo localStorage citas:', e); }
+            return [];
+        }
+
+        function saveAppointmentsToStorage() {
+            try {
+                localStorage.setItem(STORAGE_KEY_APPTS, JSON.stringify(appointments));
+            } catch(e) { console.warn('Error guardando localStorage citas:', e); }
+        }
+
+        function loadSavedCatalog() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY_CATALOG);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+                }
+            } catch(e) { console.warn('Error leyendo localStorage catálogo:', e); }
+            return JSON.parse(JSON.stringify(INITIAL_CATALOG));
+        }
+
+        function saveCatalogToStorage() {
+            try {
+                localStorage.setItem(STORAGE_KEY_CATALOG, JSON.stringify(catalogData));
+            } catch(e) { console.warn('Error guardando localStorage catálogo:', e); }
+        }
+
+        // Appointments State cargado de localStorage (permanente)
+        let appointments = loadSavedAppointments();
+
+        // Firebase References
+        let db = null;
+        let auth = null;
+        let currentUser = null;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'ab-microblading-studio';
+
+        // ---------------------------------------------------------------------
+        // 3. FIREBASE INITIALIZATION
+        // ---------------------------------------------------------------------
+        async function initFirebaseSync() {
+            try {
+                if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+                    const firebaseConfig = JSON.parse(__firebase_config);
+                    const app = initializeApp(firebaseConfig);
+                    db = getFirestore(app);
+                    auth = getAuth(app);
+
+                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+
+                    currentUser = auth.currentUser;
+
+                    onAuthStateChanged(auth, (user) => {
+                        currentUser = user;
+                        if (user) {
+                            subscribeToAppointments();
+                        }
+                    });
+                }
+            } catch (err) {
+                console.warn("Usando almacenamiento en sesión activa:", err);
+            }
+        }
+
+        function subscribeToAppointments() {
+            if (!db || !currentUser) return;
+            const apptCol = collection(db, 'artifacts', appId, 'public', 'data', 'appointments');
+            onSnapshot(apptCol, (snapshot) => {
+                if (!snapshot.empty) {
+                    const loaded = [];
+                    snapshot.forEach((docSnap) => {
+                        loaded.push({ id: docSnap.id, ...docSnap.data() });
+                    });
+                    loaded.sort((a, b) => (a.dateISO + a.timeSlot).localeCompare(b.dateISO + b.timeSlot));
+                    appointments = loaded;
+                    saveAppointmentsToStorage();
+                }
+                renderTimeSlots();
+                renderCalendarGrid();
+                renderAdminViews();
+            }, (error) => {
+                console.warn("Error leyendo citas en tiempo real:", error);
+            });
+        }
+
+        // ---------------------------------------------------------------------
+        // 4. UI RENDERING: CALCULATOR & FULL CATALOG
+        // ---------------------------------------------------------------------
+        function initCalculatorUI() {
+            renderCategoryControls();
+            onCategoryChange(selectedCategoryId);
+            renderFullCatalogCards();
+            renderCalendarGrid();
+            renderTimeSlots();
+            renderAdminViews();
+        }
+
+        function renderCategoryControls() {
+            const pillsBox = document.getElementById('category-pills-container');
+            const selectEl = document.getElementById('calc-category-select');
+            const datalistEl = document.getElementById('existing-categories-list');
+
+            pillsBox.innerHTML = '';
+            selectEl.innerHTML = '';
+            if (datalistEl) datalistEl.innerHTML = '';
+
+            catalogData.forEach((cat) => {
+                const isSelected = cat.id === selectedCategoryId;
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.onclick = () => onCategoryChange(cat.id);
+                btn.className = `px-3 py-2.5 rounded-xl text-xs font-semibold transition flex items-center justify-center gap-2 border ${
+                    isSelected
+                        ? 'btn-gold border-gold-200'
+                        : 'bg-black/60 border-gold-400/30 text-stone-200 hover:border-gold-400'
+                }`;
+                btn.innerHTML = `<i class="${cat.icon}"></i><span class="truncate">${cat.category}</span>`;
+                pillsBox.appendChild(btn);
+
+                const opt = document.createElement('option');
+                opt.value = cat.id;
+                opt.textContent = cat.category;
+                opt.selected = isSelected;
+                selectEl.appendChild(opt);
+
+                if (datalistEl) {
+                    const dlOpt = document.createElement('option');
+                    dlOpt.value = cat.category;
+                    datalistEl.appendChild(dlOpt);
+                }
+            });
+
+            populateFormQuickServiceSelect();
+        }
+
+        window.onCategoryChange = function(catId) {
+            selectedCategoryId = catId;
+            const catObj = catalogData.find(c => c.id === catId) || catalogData[0];
+
+            document.getElementById('calc-category-select').value = catObj.id;
+            renderCategoryControls();
+
+            const srvSelect = document.getElementById('calc-service-select');
+            srvSelect.innerHTML = '';
+            catObj.services.forEach((srv) => {
+                const opt = document.createElement('option');
+                opt.value = srv.id;
+                opt.textContent = `${srv.name} — $${srv.price.toFixed(2)}`;
+                srvSelect.appendChild(opt);
+            });
+
+            document.getElementById('lash-custom-options').classList.toggle('hidden', !catObj.hasLashOptions);
+            document.getElementById('nails-custom-note').classList.toggle('hidden', !catObj.isNails);
+            document.getElementById('hair-custom-note').classList.toggle('hidden', !catObj.isHair);
+
+            if (catObj.services.length > 0) {
+                selectedServiceId = catObj.services[0].id;
+                onServiceChange(selectedServiceId);
+            }
+        };
+
+        window.onServiceChange = function(srvId) {
+            selectedServiceId = srvId;
+            const catObj = catalogData.find(c => c.id === selectedCategoryId);
+            const srvObj = catObj?.services.find(s => s.id === srvId);
+
+            if (srvObj) {
+                document.getElementById('calc-service-desc-text').textContent = srvObj.desc || `${catObj.category} • ${srvObj.name}`;
+                const extraLineBox = document.getElementById('eyeliner-extra-option');
+                if (srvObj.hasExtraLine) {
+                    extraLineBox.classList.remove('hidden');
+                } else {
+                    extraLineBox.classList.add('hidden');
+                    document.getElementById('calc-extra-line-check').checked = false;
+                }
+            }
+            updateQuoteCalculation();
+        };
+
+        function getActiveQuoteData() {
+            const catObj = catalogData.find(c => c.id === selectedCategoryId) || catalogData[0];
+            const srvObj = catObj.services.find(s => s.id === selectedServiceId) || catObj.services[0];
+
+            let currentItemPrice = srvObj ? srvObj.price : 0;
+            let extraLineChecked = document.getElementById('calc-extra-line-check')?.checked;
+            if (srvObj?.hasExtraLine && extraLineChecked) {
+                currentItemPrice += 250;
+            }
+
+            let detailsParts = [];
+            if (catObj.hasLashOptions) {
+                const sz = document.getElementById('calc-lash-size').value;
+                const ds = document.getElementById('calc-lash-design').value;
+                detailsParts.push(`Tamaño: ${sz} · Diseño: ${ds}`);
+            }
+            if (srvObj?.hasExtraLine && extraLineChecked) {
+                detailsParts.push(`Incluye Línea Extra (+$250)`);
+            }
+
+            let totalCost = currentItemPrice;
+            let summaryTitle = `${catObj.category} - ${srvObj.name}${srvObj?.hasExtraLine && extraLineChecked ? ' (+Línea extra)' : ''}`;
+
+            if (serviceCart.length > 0) {
+                const cartSum = serviceCart.reduce((acc, item) => acc + item.price, 0);
+                totalCost = cartSum;
+                summaryTitle = serviceCart.map(i => `${i.category}: ${i.name}`).join(' + ');
+                detailsParts = serviceCart.map(i => i.details).filter(Boolean);
+            }
+
+            const rawDeposit = parseFloat(document.getElementById('calc-deposit-input').value) || 0;
+            const deposit = Math.max(0, rawDeposit);
+            const balance = Math.max(0, totalCost - deposit);
+
+            return {
+                summaryTitle,
+                details: detailsParts.join(' | ') || 'Servicio personalizado en estudio',
+                totalCost,
+                deposit,
+                balance,
+                isValidDeposit: deposit >= 50
+            };
+        }
+
+        window.updateQuoteCalculation = function() {
+            const quote = getActiveQuoteData();
+
+            document.getElementById('quote-service-summary').textContent = quote.summaryTitle;
+            document.getElementById('quote-total-display').textContent = `$${quote.totalCost.toFixed(2)}`;
+            document.getElementById('quote-remaining-display').textContent = `$${quote.balance.toFixed(2)}`;
+
+            const warnEl = document.getElementById('deposit-warning-msg');
+            warnEl.classList.toggle('hidden', quote.isValidDeposit);
+
+            document.getElementById('form-cost-display').value = `$${quote.totalCost.toFixed(2)} MXN`;
+            document.getElementById('form-deposit-input').value = quote.deposit;
+            document.getElementById('form-custom-details-badge').textContent = quote.details;
+            document.getElementById('summary-bar-balance').textContent = `$${quote.balance.toFixed(2)}`;
+
+            const quickSelect = document.getElementById('form-service-quick-select');
+            if (quickSelect && serviceCart.length === 0) {
+                quickSelect.value = `${selectedCategoryId}|${selectedServiceId}`;
+            }
+        };
+
+        window.syncDepositFromForm = function(val) {
+            document.getElementById('calc-deposit-input').value = val;
+            updateQuoteCalculation();
+        };
+
+        window.addCurrentServiceToCart = function() {
+            const catObj = catalogData.find(c => c.id === selectedCategoryId);
+            const srvObj = catObj?.services.find(s => s.id === selectedServiceId);
+            if (!catObj || !srvObj) return;
+
+            let price = srvObj.price;
+            let extraLine = document.getElementById('calc-extra-line-check')?.checked;
+            if (srvObj.hasExtraLine && extraLine) price += 250;
+
+            let details = "";
+            if (catObj.hasLashOptions) {
+                details = `Tamaño: ${document.getElementById('calc-lash-size').value}, Diseño: ${document.getElementById('calc-lash-design').value}`;
+            }
+
+            serviceCart.push({
+                id: Date.now() + Math.random(),
+                category: catObj.category,
+                name: srvObj.name + (srvObj.hasExtraLine && extraLine ? ' + Línea extra' : ''),
+                price,
+                details
+            });
+
+            renderServiceCart();
+            updateQuoteCalculation();
+            showToast(`"${srvObj.name}" añadido a tu cotización.`);
+        };
+
+        window.removeServiceFromCart = function(cartId) {
+            serviceCart = serviceCart.filter(item => item.id !== cartId);
+            renderServiceCart();
+            updateQuoteCalculation();
+        };
+
+        window.clearServiceCart = function() {
+            serviceCart = [];
+            renderServiceCart();
+            updateQuoteCalculation();
+        };
+
+        function renderServiceCart() {
+            const box = document.getElementById('multi-service-cart-box');
+            const list = document.getElementById('multi-service-list');
+            if (serviceCart.length === 0) {
+                box.classList.add('hidden');
+                return;
+            }
+            box.classList.remove('hidden');
+            list.innerHTML = '';
+            serviceCart.forEach((item) => {
+                const li = document.createElement('li');
+                li.className = "flex items-center justify-between bg-white/5 px-3 py-1.5 rounded-lg";
+                li.innerHTML = `
+                    <div>
+                        <span class="font-semibold text-gold-200">${item.category} • ${item.name}</span>
+                        ${item.details ? `<span class="block text-[10px] text-stone-400">${item.details}</span>` : ''}
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-white">$${item.price}</span>
+                        <button type="button" onclick="removeServiceFromCart(${item.id})" class="text-rose-400 hover:text-rose-300">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        function renderFullCatalogCards() {
+            const grid = document.getElementById('full-catalog-grid');
+            grid.innerHTML = '';
+
+            catalogData.forEach((cat) => {
+                const card = document.createElement('div');
+                card.className = "luxury-card rounded-3xl p-5 flex flex-col justify-between space-y-4 hover:border-gold-400/60 transition";
+
+                let servicesHTML = cat.services.map((srv) => `
+                    <button type="button" onclick="selectServiceFromCatalog('${cat.id}', '${srv.id}')"
+                        class="w-full text-left p-2.5 rounded-xl hover:bg-gold-400/15 border border-transparent hover:border-gold-400/40 transition flex items-center justify-between gap-2 group">
+                        <div class="pr-2">
+                            <p class="text-xs sm:text-sm font-medium text-stone-100 group-hover:text-gold-200 transition">${srv.name}</p>
+                            <p class="text-[11px] text-stone-400 line-clamp-1">${srv.desc || ''}</p>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-lg bg-black/70 border border-gold-400/30 text-gold-300 font-bold text-xs shrink-0">
+                            $${srv.price}
+                        </span>
+                    </button>
+                `).join('');
+
+                let footerNote = '';
+                if (cat.isNails) {
+                    footerNote = `<p class="text-[11px] text-gold-300/90 italic pt-2 border-t border-gold-400/20">* Diseños más elaborados cotizar con foto por WhatsApp.</p>`;
+                } else if (cat.isHair) {
+                    footerNote = `<p class="text-[11px] text-gold-300/90 italic pt-2 border-t border-gold-400/20">* El precio puede cambiar si es abundante cabello o cintura.</p>`;
+                }
+
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 border-b border-gold-400/20 pb-3">
+                            <div class="w-10 h-10 rounded-2xl bg-gold-400/15 border border-gold-400/40 flex items-center justify-center text-gold-300">
+                                <i class="${cat.icon} text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif text-2xl font-bold text-gold-gradient">• ${cat.category} •</h4>
+                                <p class="text-[11px] text-stone-400">${cat.subtitle}</p>
+                            </div>
+                        </div>
+                        <div class="space-y-1 max-h-80 overflow-y-auto pr-1">
+                            ${servicesHTML}
+                        </div>
+                    </div>
+                    ${footerNote}
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        window.selectServiceFromCatalog = function(catId, srvId) {
+            onCategoryChange(catId);
+            document.getElementById('calc-service-select').value = srvId;
+            onServiceChange(srvId);
+            window.scrollTo({ top: 180, behavior: 'smooth' });
+            showToast("Servicio cargado en la calculadora ✨");
+        };
+
+        function populateFormQuickServiceSelect() {
+            const sel = document.getElementById('form-service-quick-select');
+            if (!sel) return;
+            sel.innerHTML = '';
+            catalogData.forEach((cat) => {
+                const grp = document.createElement('optgroup');
+                grp.label = `• ${cat.category} •`;
+                cat.services.forEach((srv) => {
+                    const opt = document.createElement('option');
+                    opt.value = `${cat.id}|${srv.id}`;
+                    opt.textContent = `${cat.category} - ${srv.name} ($${srv.price})`;
+                    grp.appendChild(opt);
+                });
+                sel.appendChild(grp);
+            });
+        }
+
+        window.onFormServiceQuickChange = function(val) {
+            if (!val) return;
+            serviceCart = [];
+            renderServiceCart();
+            const [catId, srvId] = val.split('|');
+            onCategoryChange(catId);
+            document.getElementById('calc-service-select').value = srvId;
+            onServiceChange(srvId);
+        };
+
+        // ---------------------------------------------------------------------
+        // 5. CALENDAR & PRIVACY-PRESERVING TIME SLOTS
+        // ---------------------------------------------------------------------
+        window.changeCalendarMonth = function(delta) {
+            currentCalMonth += delta;
+            if (currentCalMonth > 11) {
+                currentCalMonth = 0;
+                currentCalYear++;
+            } else if (currentCalMonth < 0) {
+                currentCalMonth = 11;
+                currentCalYear--;
+            }
+            renderCalendarGrid();
+        };
+
+        function formatHumanDate(isoDate) {
+            const [y, m, d] = isoDate.split('-').map(Number);
+            const shortMonths = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
+            return `${d} ${shortMonths[m - 1]} ${y}`;
+        }
+
+        function renderCalendarGrid() {
+            const label = document.getElementById('calendar-month-label');
+            label.textContent = `${MONTH_NAMES[currentCalMonth]} de ${currentCalYear}`;
+
+            const grid = document.getElementById('calendar-days-grid');
+            grid.innerHTML = '';
+
+            const firstDayOfMonth = new Date(currentCalYear, currentCalMonth, 1).getDay();
+            const startOffset = (firstDayOfMonth + 6) % 7;
+            const daysInMonth = new Date(currentCalYear, currentCalMonth + 1, 0).getDate();
+
+            for (let i = 0; i < startOffset; i++) {
+                const empty = document.createElement('div');
+                grid.appendChild(empty);
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const mStr = String(currentCalMonth + 1).padStart(2, '0');
+                const dStr = String(day).padStart(2, '0');
+                const iso = `${currentCalYear}-${mStr}-${dStr}`;
+
+                const isSelected = iso === selectedDateISO;
+                const bookedCount = appointments.filter(a => a.dateISO === iso && a.status !== 'cancelada').length;
+                const isFullyBooked = bookedCount >= TIME_SLOTS.length;
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.onclick = () => selectCalendarDate(iso);
+                btn.className = `h-10 sm:h-11 rounded-xl text-xs sm:text-sm font-semibold transition relative flex flex-col items-center justify-center ${
+                    isSelected
+                        ? 'btn-gold shadow-lg ring-2 ring-gold-300'
+                        : isFullyBooked
+                            ? 'bg-rose-950/30 text-stone-500 border border-rose-500/20 hover:border-rose-400/40 cursor-pointer'
+                            : bookedCount > 0
+                                ? 'bg-amber-950/20 text-stone-200 border border-amber-500/30 hover:bg-gold-400/15 hover:border-gold-400/40'
+                                : 'bg-black/50 hover:bg-gold-400/15 text-stone-200 border border-white/5 hover:border-gold-400/40'
+                }`;
+                btn.innerHTML = `
+                    <span>${day}</span>
+                    ${isFullyBooked 
+                        ? `<span class="text-[8px] font-bold tracking-tighter uppercase text-rose-400 leading-none mt-0.5" title="Día completamente lleno">Lleno</span>` 
+                        : bookedCount > 0 
+                            ? `<span class="w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-black' : 'bg-gold-400'} mt-0.5" title="${bookedCount} horarios ocupados"></span>` 
+                            : ''}
+                `;
+                grid.appendChild(btn);
+            }
+
+            const humanDate = formatHumanDate(selectedDateISO);
+            document.getElementById('selected-date-human').textContent = humanDate;
+            document.getElementById('form-date-display').value = humanDate;
+        }
+
+        window.selectCalendarDate = function(isoDate) {
+            selectedDateISO = isoDate;
+            renderCalendarGrid();
+            renderTimeSlots();
+        };
+
+        function renderTimeSlots() {
+            const container = document.getElementById('time-slots-grid');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const occupiedSlotsOnDate = new Set(
+                appointments
+                    .filter(a => a.dateISO === selectedDateISO && a.status !== 'cancelada')
+                    .map(a => a.timeSlot)
+            );
+
+            if (occupiedSlotsOnDate.has(selectedTimeSlot)) {
+                const firstFree = TIME_SLOTS.find(t => !occupiedSlotsOnDate.has(t)) || "";
+                selectedTimeSlot = firstFree;
+            }
+
+            TIME_SLOTS.forEach((slot) => {
+                const isOccupied = occupiedSlotsOnDate.has(slot);
+                const isSelected = !isOccupied && slot === selectedTimeSlot;
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.disabled = isOccupied;
+
+                if (isOccupied) {
+                    btn.className = "slot-btn slot-btn-occupied py-3 px-2 rounded-xl text-xs font-medium flex flex-col items-center justify-center";
+                    btn.innerHTML = `<span>${slot}</span><span class="text-[9px] uppercase tracking-wider text-amber-500/60 font-bold">Ocupado</span>`;
+                } else {
+                    btn.onclick = () => selectTimeSlot(slot);
+                    btn.className = `slot-btn py-3 px-2 rounded-xl text-xs sm:text-sm ${
+                        isSelected ? 'slot-btn-selected' : 'slot-btn-available'
+                    }`;
+                    btn.textContent = slot;
+                }
+                container.appendChild(btn);
+            });
+
+            if (occupiedSlotsOnDate.size >= TIME_SLOTS.length) {
+                const noSlotNotice = document.createElement('div');
+                noSlotNotice.className = "col-span-3 p-3 rounded-xl bg-rose-950/40 border border-rose-500/40 text-center text-rose-300 text-xs font-semibold";
+                noSlotNotice.innerHTML = '<i class="fa-solid fa-calendar-xmark mr-1.5"></i> Todos los horarios de este día están ocupados. Por favor elige otra fecha en el calendario.';
+                container.appendChild(noSlotNotice);
+            }
+            document.getElementById('form-time-display').value = selectedTimeSlot || 'Sin horario disponible (Día Lleno)';
+            document.getElementById('summary-bar-time').textContent = selectedTimeSlot || 'Día Lleno';
+        }
+
+        window.selectTimeSlot = function(slot) {
+            selectedTimeSlot = slot;
+            renderTimeSlots();
+        };
+
+        window.proceedToSchedule = function() {
+            const quote = getActiveQuoteData();
+            if (!quote.isValidDeposit) {
+                showToast("Por favor ingresa un anticipo mínimo de $50 MXN", "error");
+                document.getElementById('calc-deposit-input').focus();
+                return;
+            }
+            switchTab('agenda');
+            window.scrollTo({ top: 140, behavior: 'smooth' });
+        };
+
+        // ---------------------------------------------------------------------
+        // 6. BOOKING CONFIRMATION + WHATSAPP, EMAIL & CALENDAR (.ICS / GCAL) SYNC
+        // ---------------------------------------------------------------------
+        function parseSlotTo24Hour(slotStr) {
+            const match = slotStr.match(/^(\d+)(am|pm)$/i);
+            if (!match) return { hour: 10, minute: 0 };
+            let hour = parseInt(match[1], 10);
+            const mer = match[2].toLowerCase();
+            if (mer === 'pm' && hour < 12) hour += 12;
+            if (mer === 'am' && hour === 12) hour = 0;
+            return { hour, minute: 0 };
+        }
+
+        function buildGoogleCalendarUrl(appt) {
+            const [y, m, d] = appt.dateISO.split('-').map(Number);
+            const { hour } = parseSlotTo24Hour(appt.timeSlot);
+
+            const pad = (n) => String(n).padStart(2, '0');
+            const startStr = `${y}${pad(m)}${pad(d)}T${pad(hour)}0000`;
+            const endHour = Math.min(23, hour + 1);
+            const endStr = `${y}${pad(m)}${pad(d)}T${pad(endHour)}3000`;
+
+            const title = encodeURIComponent(`✨ Cita Caprichos Studio: ${appt.serviceTitle} - ${appt.clientName}`);
+            const details = encodeURIComponent(
+                `RESERVA DE CITA - ✨ CAPRICHOS STUDIO ✨\n` +
+                `----------------------------------------\n` +
+                `Clienta: ${appt.clientName}\n` +
+                `Contacto / WhatsApp: ${appt.clientPhone}\n` +
+                `Servicio: ${appt.serviceTitle}\n` +
+                `Detalles: ${appt.details}\n` +
+                `Costo Total: $${appt.totalCost.toFixed(2)} MXN\n` +
+                `Anticipo acordado: $${appt.deposit.toFixed(2)} MXN\n` +
+                `Saldo pendiente: $${appt.balance.toFixed(2)} MXN\n\n` +
+                `Políticas aceptadas: 15 min de tolerancia. Anticipo no reembolsable en cancelaciones o cambios de día.`
+            );
+            const location = encodeURIComponent("Caprichos Studio (Ana Blancas)");
+            const addEmails = encodeURIComponent(STUDIO_OWNER.email + (appt.clientEmail ? `,${appt.clientEmail}` : ''));
+
+            return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startStr}/${endStr}&details=${details}&location=${location}&add=${addEmails}`;
+        }
+
+        function downloadICSFile(apptList, filename = "cita-caprichos-studio.ics") {
+            const pad = (n) => String(n).padStart(2, '0');
+            let eventsBlocks = "";
+
+            apptList.forEach((appt) => {
+                const [y, m, d] = appt.dateISO.split('-').map(Number);
+                const { hour } = parseSlotTo24Hour(appt.timeSlot);
+                const startStr = `${y}${pad(m)}${pad(d)}T${pad(hour)}0000`;
+                const endHour = Math.min(23, hour + 1);
+                const endStr = `${y}${pad(m)}${pad(d)}T${pad(endHour)}3000`;
+
+                const cleanDesc = `Clienta: ${appt.clientName}\\nTel: ${appt.clientPhone}\\nServicio: ${appt.serviceTitle} (${appt.details})\\nTotal: $${appt.totalCost} | Anticipo: $${appt.deposit} | Saldo: $${appt.balance}\\nRecordatorio: 15 min de tolerancia.`;
+
+                eventsBlocks += [
+                    "BEGIN:VEVENT",
+                    `UID:${appt.id || Date.now()}@caprichos.studio`,
+                    `DTSTAMP:${startStr}Z`,
+                    `DTSTART:${startStr}`,
+                    `DTEND:${endStr}`,
+                    `SUMMARY:✨ Cita Caprichos Studio: ${appt.serviceTitle} (${appt.clientName})`,
+                    `DESCRIPTION:${cleanDesc}`,
+                    `LOCATION:Caprichos Studio`,
+                    `ORGANIZER;CN=Ana Blancas:mailto:${STUDIO_OWNER.email}`,
+                    "BEGIN:VALARM",
+                    "TRIGGER:-PT30M",
+                    "ACTION:DISPLAY",
+                    "DESCRIPTION:Recordatorio de cita en Caprichos Studio (15 min de tolerancia)",
+                    "END:VALARM",
+                    "END:VEVENT"
+                ].join("\r\n") + "\r\n";
+            });
+
+            const icsContent = [
+                "BEGIN:VCALENDAR",
+                "VERSION:2.0",
+                "PRODID:-//Caprichos Studio//Agenda//ES",
+                "CALSCALE:GREGORIAN",
+                "METHOD:PUBLISH",
+                eventsBlocks.trim(),
+                "END:VCALENDAR"
+            ].join("\r\n");
+
+            const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        window.handleConfirmBooking = async function(e) {
+            e.preventDefault();
+
+            const clientName = document.getElementById('form-client-name').value.trim();
+            const clientPhone = document.getElementById('form-client-phone').value.trim();
+            const clientEmail = document.getElementById('form-client-email').value.trim();
+            const policyAccepted = document.getElementById('form-policy-accept').checked;
+
+            if (!selectedTimeSlot) {
+                showToast("Por favor selecciona un horario disponible.", "error");
+                return;
+            }
+
+            const alreadyTaken = appointments.some(a => a.dateISO === selectedDateISO && a.timeSlot === selectedTimeSlot && a.status !== 'cancelada');
+            if (alreadyTaken) {
+                showToast("Ese horario acaba de ser ocupado. Por favor elige otro.", "error");
+                renderTimeSlots();
+                return;
+            }
+
+            const quote = getActiveQuoteData();
+            if (quote.deposit < 50) {
+                showToast("El anticipo mínimo para agendar es de $50.00 MXN.", "error");
+                document.getElementById('form-deposit-input').focus();
+                return;
+            }
+
+            if (!policyAccepted) {
+                showToast("Debes aceptar las políticas de tolerancia y anticipo.", "error");
+                return;
+            }
+
+            const newAppt = {
+                id: "cita-" + Date.now(),
+                clientName,
+                clientPhone,
+                clientEmail,
+                dateISO: selectedDateISO,
+                dateHuman: formatHumanDate(selectedDateISO),
+                timeSlot: selectedTimeSlot,
+                serviceTitle: quote.summaryTitle,
+                details: quote.details,
+                totalCost: quote.totalCost,
+                deposit: quote.deposit,
+                balance: quote.balance,
+                status: "agendada",
+                createdAt: Date.now()
+            };
+
+            appointments.push(newAppt);
+            saveAppointmentsToStorage();
+            renderTimeSlots();
+            renderCalendarGrid();
+            renderAdminViews();
+
+            if (db && currentUser) {
+                try {
+                    const apptCol = collection(db, 'artifacts', appId, 'public', 'data', 'appointments');
+                    await addDoc(apptCol, newAppt);
+                } catch (err) {
+                    console.warn("Guardado local completado:", err);
+                }
+            }
+
+            openConfirmationModal(newAppt);
+
+            document.getElementById('form-client-name').value = '';
+            document.getElementById('form-client-phone').value = '';
+            serviceCart = [];
+            renderServiceCart();
+        };
+
+        function openConfirmationModal(appt) {
+            const modal = document.getElementById('confirmation-modal');
+            const ticketBox = document.getElementById('modal-ticket-details');
+
+            ticketBox.innerHTML = `
+                <div class="flex justify-between border-b border-gold-400/20 pb-1.5">
+                    <span class="text-stone-400">Clienta:</span>
+                    <strong class="text-white">${appt.clientName}</strong>
+                </div>
+                <div class="flex justify-between border-b border-gold-400/20 pb-1.5">
+                    <span class="text-stone-400">Teléfono:</span>
+                    <strong class="text-gold-200">${appt.clientPhone}</strong>
+                </div>
+                <div class="flex justify-between border-b border-gold-400/20 pb-1.5">
+                    <span class="text-stone-400">Fecha y Hora:</span>
+                    <strong class="text-gold-300">${appt.dateHuman} a las ${appt.timeSlot}</strong>
+                </div>
+                <div class="border-b border-gold-400/20 pb-1.5">
+                    <span class="text-stone-400 block">Servicio(s):</span>
+                    <strong class="text-white">${appt.serviceTitle}</strong>
+                    <span class="block text-[11px] text-gold-300">${appt.details}</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2 pt-1 text-center">
+                    <div class="p-2 rounded-lg bg-white/5">
+                        <span class="block text-[10px] text-stone-400">Total</span>
+                        <strong class="text-white">$${appt.totalCost.toFixed(2)}</strong>
+                    </div>
+                    <div class="p-2 rounded-lg bg-gold-400/15 border border-gold-400/30">
+                        <span class="block text-[10px] text-gold-200">Anticipo</span>
+                        <strong class="text-gold-300">$${appt.deposit.toFixed(2)}</strong>
+                    </div>
+                    <div class="p-2 rounded-lg bg-white/5">
+                        <span class="block text-[10px] text-stone-400">Saldo</span>
+                        <strong class="text-white">$${appt.balance.toFixed(2)}</strong>
+                    </div>
+                </div>
+            `;
+
+            const gcalUrl = buildGoogleCalendarUrl(appt);
+            document.getElementById('modal-gcal-link').href = gcalUrl;
+
+            const waText =
+                `✨ *NUEVA CITA AGENDADA — CAPRICHOS STUDIO* ✨\n\n` +
+                `👤 *Clienta:* ${appt.clientName}\n` +
+                `📱 *Celular:* ${appt.clientPhone}\n` +
+                `📅 *Fecha:* ${appt.dateHuman}\n` +
+                `⏰ *Horario:* ${appt.timeSlot}\n` +
+                `💎 *Servicio:* ${appt.serviceTitle}\n` +
+                `📋 *Detalles:* ${appt.details}\n\n` +
+                `💰 *Costo Total:* $${appt.totalCost.toFixed(2)} MXN\n` +
+                `✅ *Anticipo a depositar (mín. $50):* $${appt.deposit.toFixed(2)} MXN\n` +
+                `💳 *Saldo pendiente:* $${appt.balance.toFixed(2)} MXN\n\n` +
+                `📌 *Políticas aceptadas:* 15 min de tolerancia. En caso de cancelar o cambiar de día no se reembolsa el anticipo.\n\n` +
+                `🗓️ *Guardar directo en el Calendario de Ana:* ${gcalUrl}`;
+
+            const waUrl = `https://wa.me/${STUDIO_OWNER.phoneClean}?text=${encodeURIComponent(waText)}`;
+            document.getElementById('modal-wa-link').href = waUrl;
+
+            document.getElementById('modal-ics-btn').onclick = () => {
+                downloadICSFile([appt], `cita-${appt.dateISO}-${appt.timeSlot}.ics`);
+                showToast("Archivo de calendario (.ics) descargado para tu celular.");
+            };
+
+            const mailSubject = encodeURIComponent(`Nueva Cita Agendada: ${appt.clientName} - ${appt.dateHuman} (${appt.timeSlot})`);
+            const mailBody = encodeURIComponent(waText);
+            document.getElementById('modal-mailto-link').href = `mailto:${STUDIO_OWNER.email}?subject=${mailSubject}&body=${mailBody}`;
+
+            const statusEl = document.getElementById('email-auto-status');
+            statusEl.textContent = "Enviando notificación automática a Ana.blancas061517@gmail.com...";
+            fetch(`https://formsubmit.co/ajax/${STUDIO_OWNER.email}`, {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    _subject: `✨ Nueva Cita Caprichos Studio: ${appt.clientName} (${appt.dateHuman} ${appt.timeSlot})`,
+                    Clienta: appt.clientName,
+                    Telefono: appt.clientPhone,
+                    Fecha: appt.dateHuman,
+                    Horario: appt.timeSlot,
+                    Servicio: appt.serviceTitle,
+                    Detalles: appt.details,
+                    Costo_Total: `$${appt.totalCost.toFixed(2)} MXN`,
+                    Anticipo: `$${appt.deposit.toFixed(2)} MXN`,
+                    Saldo_Pendiente: `$${appt.balance.toFixed(2)} MXN`,
+                    Agregar_A_Google_Calendar: gcalUrl
+                })
+            }).then(() => {
+                statusEl.textContent = "✓ Notificación enviada al correo Ana.blancas061517@gmail.com";
+            }).catch(() => {
+                statusEl.textContent = "Usa los botones de arriba para enviar por WhatsApp o Correo con 1 toque.";
+            });
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        window.closeConfirmationModal = function() {
+            const modal = document.getElementById('confirmation-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        };
+
+        // ---------------------------------------------------------------------
+        // 7. PROTECTED ADMIN MODE (SOLVES PRIVACY ISSUE EXPLAINED IN VIDEO)
+        // ---------------------------------------------------------------------
+        window.handleAdminAccessClick = function() {
+            if (isAdminUnlocked) {
+                switchTab('agendadas');
+            } else {
+                const modal = document.getElementById('admin-pin-modal');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.getElementById('admin-pin-input').value = '';
+                document.getElementById('admin-pin-error').classList.add('hidden');
+                setTimeout(() => document.getElementById('admin-pin-input').focus(), 100);
+            }
+        };
+
+        window.closeAdminModal = function() {
+            const modal = document.getElementById('admin-pin-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        };
+
+        window.verifyAdminPin = function(e) {
+            e.preventDefault();
+            const val = document.getElementById('admin-pin-input').value.trim();
+            if (isValidAdminPin(val)) {
+                isAdminUnlocked = true;
+                closeAdminModal();
+                updateAdminUIState();
+                switchTab('agendadas');
+                showToast("Bienvenida Ana ✨ Panel de administración desbloqueado.");
+            } else {
+                document.getElementById('admin-pin-error').classList.remove('hidden');
+            }
+        };
+
+        window.logoutAdmin = function() {
+            isAdminUnlocked = false;
+            updateAdminUIState();
+            switchTab('calculadora');
+            showToast("Modo administradora cerrado. Vista de clienta activa.");
+        };
+
+        function updateAdminUIState() {
+            const adminTabs = document.querySelectorAll('.admin-only-tab');
+            adminTabs.forEach(tab => {
+                if (isAdminUnlocked) {
+                    tab.classList.remove('hidden');
+                    tab.classList.add('flex');
+                } else {
+                    tab.classList.add('hidden');
+                    tab.classList.remove('flex');
+                }
+            });
+
+            document.getElementById('admin-active-banner').classList.toggle('hidden', !isAdminUnlocked);
+            document.getElementById('admin-lock-icon').className = isAdminUnlocked
+                ? "fa-solid fa-lock-open text-emerald-400"
+                : "fa-solid fa-lock text-gold-400";
+            document.getElementById('admin-btn-label').textContent = isAdminUnlocked ? "Panel Ana" : "Admin";
+        }
+
+        function renderAdminViews() {
+            const activeAppts = appointments.filter(a => a.status === 'agendada');
+            const completedAppts = appointments.filter(a => a.status === 'realizada');
+
+            const badge = document.getElementById('badge-agendadas');
+            if (badge) badge.textContent = activeAppts.length;
+
+            const agendadasBox = document.getElementById('agendadas-list-container');
+            if (agendadasBox) {
+                if (activeAppts.length === 0) {
+                    agendadasBox.innerHTML = `
+                        <div class="p-8 rounded-2xl bg-black/40 border border-gold-400/20 text-center text-stone-400 text-sm">
+                            No hay citas agendadas pendientes en este momento.
+                        </div>
+                    `;
+                } else {
+                    agendadasBox.innerHTML = activeAppts.map(appt => {
+                        const gcalUrl = buildGoogleCalendarUrl(appt);
+                        const clientWa = `https://wa.me/52${appt.clientPhone.replace(/\D/g, '')}?text=${encodeURIComponent(`Hola ${appt.clientName} ✨ Te escribo de Caprichos Studio para confirmar tu cita del día ${appt.dateISO} a las ${appt.timeSlot} (${appt.serviceTitle}). Recuerda que contamos con 15 min de tolerancia.`)}`;
+                        return `
+                            <div class="p-5 rounded-2xl bg-black/70 border border-gold-400/35 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-gold-400/70 transition">
+                                <div class="space-y-1">
+                                    <div class="flex items-center gap-2.5">
+                                        <h4 class="font-serif text-2xl font-bold text-white">${appt.clientName}</h4>
+                                        <span class="px-2.5 py-0.5 rounded-full text-[11px] bg-gold-400/20 text-gold-300 font-bold">
+                                            ${appt.dateISO} · ${appt.timeSlot}
+                                        </span>
+                                    </div>
+                                    <p class="text-sm font-bold text-gold-300">${appt.serviceTitle}</p>
+                                    <p class="text-xs text-stone-400">${appt.details || ''}</p>
+                                    <p class="text-xs text-stone-300">
+                                        Contacto: <a href="${clientWa}" target="_blank" class="text-emerald-400 hover:underline font-semibold"><i class="fa-brands fa-whatsapp"></i> ${appt.clientPhone}</a>
+                                    </p>
+                                    <p class="text-xs text-stone-200 pt-1">
+                                        Anticipo: <strong class="text-emerald-400">$${Number(appt.deposit).toFixed(2)}</strong> · 
+                                        Saldo pendiente: <strong class="text-gold-300">$${Number(appt.balance).toFixed(2)}</strong>
+                                    </p>
+                                </div>
+
+                                <div class="flex flex-col sm:flex-row md:flex-col items-stretch sm:items-end justify-between gap-2 shrink-0">
+                                    <span class="font-serif text-2xl font-bold text-gold-gradient text-right">$${Number(appt.totalCost).toFixed(2)}</span>
+                                    <div class="flex flex-wrap gap-2">
+                                        <a href="${gcalUrl}" target="_blank" title="Añadir a Google Calendar"
+                                           class="px-3 py-2 rounded-xl border border-gold-400/40 bg-gold-400/10 hover:bg-gold-400/25 text-gold-200 text-xs font-semibold flex items-center gap-1.5">
+                                            <i class="fa-brands fa-google"></i> Calendar
+                                        </a>
+                                        <button onclick="downloadSingleApptICS('${appt.id}')" title="Guardar en Calendario iPhone"
+                                            class="px-3 py-2 rounded-xl border border-gold-400/40 bg-gold-400/10 hover:bg-gold-400/25 text-gold-200 text-xs font-semibold flex items-center gap-1.5">
+                                            <i class="fa-brands fa-apple"></i> iPhone
+                                        </button>
+                                        <button onclick="markAppointmentDone('${appt.id}')"
+                                            class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition">
+                                            Marcar realizada
+                                        </button>
+                                        <button onclick="deleteAppointment('${appt.id}')"
+                                            class="px-3.5 py-2 rounded-xl border border-rose-500/40 bg-rose-950/40 hover:bg-rose-900/60 text-rose-300 text-xs font-semibold transition">
+                                            Borrar cita
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+
+            const realizadasBox = document.getElementById('realizadas-list-container');
+            if (realizadasBox) {
+                if (completedAppts.length === 0) {
+                    realizadasBox.innerHTML = `
+                        <div class="p-8 rounded-2xl bg-black/40 border border-gold-400/20 text-center text-stone-400 text-sm">
+                            Aún no hay citas marcadas como realizadas.
+                        </div>
+                    `;
+                } else {
+                    realizadasBox.innerHTML = completedAppts.map(appt => `
+                        <div class="p-4 rounded-2xl bg-black/50 border border-emerald-500/30 flex items-center justify-between gap-4">
+                            <div>
+                                <h4 class="font-serif text-xl font-bold text-white">${appt.clientName} <span class="text-xs text-emerald-400 font-sans">✓ Realizada</span></h4>
+                                <p class="text-xs text-stone-400">${appt.dateISO} · ${appt.timeSlot} — ${appt.serviceTitle}</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="font-serif text-2xl font-bold text-emerald-400">$${Number(appt.totalCost).toFixed(2)}</span>
+                                <button onclick="deleteAppointment('${appt.id}')" class="text-xs text-rose-400 hover:underline">Eliminar</button>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            const completedSum = completedAppts.reduce((acc, a) => acc + (Number(a.totalCost) || 0), 0);
+            const activeDeposits = activeAppts.reduce((acc, a) => acc + (Number(a.deposit) || 0), 0);
+            const activePending = activeAppts.reduce((acc, a) => acc + (Number(a.balance) || 0), 0);
+
+            document.getElementById('fin-completed-total').textContent = `$${completedSum.toFixed(2)}`;
+            document.getElementById('fin-completed-count').textContent = `${completedAppts.length} citas completadas`;
+            document.getElementById('fin-deposits-total').textContent = `$${activeDeposits.toFixed(2)}`;
+            document.getElementById('fin-pending-total').textContent = `$${activePending.toFixed(2)}`;
+            document.getElementById('fin-active-count').textContent = `En ${activeAppts.length} citas próximas`;
+
+            renderAdminServiceEditor();
+        }
+
+        window.downloadSingleApptICS = function(id) {
+            const appt = appointments.find(a => a.id === id);
+            if (appt) downloadICSFile([appt], `cita-${appt.clientName.replace(/\s+/g, '-')}.ics`);
+        };
+
+        window.exportAllAppointmentsICS = function() {
+            const active = appointments.filter(a => a.status === 'agendada');
+            if (active.length === 0) {
+                showToast("No hay citas activas para exportar.", "error");
+                return;
+            }
+            downloadICSFile(active, "agenda-completa-ab-studio.ics");
+            showToast("Agenda completa descargada para el calendario de tu celular.");
+        };
+
+        window.markAppointmentDone = async function(id) {
+            const idx = appointments.findIndex(a => a.id === id);
+            if (idx !== -1) {
+                appointments[idx].status = 'realizada';
+                saveAppointmentsToStorage();
+                renderAdminViews();
+                showToast("Cita marcada como realizada ✓");
+                if (db && currentUser && !id.startsWith('demo-') && !id.startsWith('cita-')) {
+                    try {
+                        const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'appointments', id);
+                        await updateDoc(docRef, { status: 'realizada' });
+                    } catch (e) { console.warn(e); }
+                }
+            }
+        };
+
+        window.deleteAppointment = async function(id) {
+            appointments = appointments.filter(a => a.id !== id);
+            saveAppointmentsToStorage();
+            renderTimeSlots();
+            renderCalendarGrid();
+            renderAdminViews();
+            showToast("Cita eliminada y horario liberado.");
+            if (db && currentUser && !id.startsWith('demo-') && !id.startsWith('cita-')) {
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'appointments', id);
+                    await deleteDoc(docRef);
+                } catch (e) { console.warn(e); }
+            }
+        };
+
+        // ---------------------------------------------------------------------
+        // 8. INTERACTIVE SERVICE & SECTOR EDITOR (ADMIN TAB)
+        // ---------------------------------------------------------------------
+        function renderAdminServiceEditor() {
+            const box = document.getElementById('admin-services-editor-list');
+            if (!box) return;
+            box.innerHTML = catalogData.map(cat => `
+                <div class="p-4 rounded-2xl bg-black/50 border border-gold-400/25 space-y-2">
+                    <h4 class="font-serif text-xl font-bold text-gold-300">• ${cat.category} •</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        ${cat.services.map(srv => `
+                            <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-white/5 text-xs">
+                                <span class="text-stone-200 font-medium">${srv.name}</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-gold-300 font-bold">$${srv.price}</span>
+                                    <button onclick="deleteServiceItem('${cat.id}', '${srv.id}')" class="text-rose-400 hover:text-rose-300 ml-1" title="Eliminar servicio">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        window.handleAddCustomService = function(e) {
+            e.preventDefault();
+            const catName = document.getElementById('new-srv-cat').value.trim();
+            const srvName = document.getElementById('new-srv-name').value.trim();
+            const srvPrice = parseFloat(document.getElementById('new-srv-price').value) || 0;
+
+            if (!catName || !srvName || srvPrice <= 0) return;
+
+            const catId = catName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-');
+            let catObj = catalogData.find(c => c.id === catId || c.category.toLowerCase() === catName.toLowerCase());
+
+            if (!catObj) {
+                catObj = {
+                    id: catId,
+                    category: catName,
+                    icon: "fa-solid fa-gem",
+                    subtitle: "Servicios especializados AB Studio",
+                    services: []
+                };
+                catalogData.push(catObj);
+            }
+
+            catObj.services.push({
+                id: "srv-" + Date.now(),
+                name: srvName,
+                price: srvPrice,
+                desc: `Servicio profesional de ${catName}.`
+            });
+
+            document.getElementById('new-srv-name').value = '';
+            document.getElementById('new-srv-price').value = '';
+
+            saveCatalogToStorage();
+            initCalculatorUI();
+            showToast(`Servicio "${srvName}" ($${srvPrice}) agregado a ${catObj.category}.`);
+        };
+
+        window.deleteServiceItem = function(catId, srvId) {
+            const catObj = catalogData.find(c => c.id === catId);
+            if (!catObj) return;
+            catObj.services = catObj.services.filter(s => s.id !== srvId);
+            saveCatalogToStorage();
+            initCalculatorUI();
+            showToast("Servicio eliminado del catálogo.");
+        };
+
+        // ---------------------------------------------------------------------
+        // 9. TAB NAVIGATION & TOAST HELPER
+        // ---------------------------------------------------------------------
+        window.switchTab = function(tabName) {
+            const allTabs = ['calculadora', 'agenda', 'agendadas', 'realizadas', 'ganancias', 'editor'];
+            allTabs.forEach((t) => {
+                const viewEl = document.getElementById(`view-${t}`);
+                const btnEl = document.getElementById(`tab-btn-${t}`);
+                if (viewEl) viewEl.classList.toggle('hidden', t !== tabName);
+                if (btnEl) {
+                    if (t === tabName) {
+                        btnEl.classList.add('btn-gold');
+                        btnEl.classList.remove('text-stone-200', 'hover:bg-white/5');
+                    } else {
+                        btnEl.classList.remove('btn-gold');
+                        btnEl.classList.add('text-stone-200', 'hover:bg-white/5');
+                    }
+                }
+            });
+            renderTimeSlots();
+        };
+
+        window.showToast = function(msg, type = "success") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `px-4 py-3 rounded-2xl shadow-2xl border text-xs font-semibold flex items-center gap-2.5 transition-all duration-300 ${
+                type === 'error'
+                    ? 'bg-rose-950/95 border-rose-400 text-rose-100'
+                    : 'bg-charcoal/95 border-gold-400 text-gold-100'
+            }`;
+            toast.innerHTML = `
+                <i class="${type === 'error' ? 'fa-solid fa-circle-exclamation text-rose-400' : 'fa-solid fa-sparkles text-gold-400'}"></i>
+                <span>${msg}</span>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3600);
+        };
+
+        // ---------------------------------------------------------------------
+        // 10. ANIMATED VIDEO-STYLE GOLD & BLACK SILK/BOKEH BACKGROUND CANVAS
+        // ---------------------------------------------------------------------
+        let canvasRunning = true;
+        function initLuxuryBackgroundCanvas() {
+            const canvas = document.getElementById('luxury-bg-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            let ribbons = [];
+            let tick = 0;
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            const particleCount = Math.min(75, Math.floor((window.innerWidth * window.innerHeight) / 18000));
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    r: Math.random() * 2.8 + 0.6,
+                    vx: (Math.random() - 0.5) * 0.35,
+                    vy: -Math.random() * 0.45 - 0.1,
+                    alpha: Math.random() * 0.65 + 0.15,
+                    pulse: Math.random() * Math.PI * 2,
+                    isBokeh: Math.random() > 0.78
+                });
+            }
+
+            for (let j = 0; j < 3; j++) {
+                ribbons.push({
+                    yOffset: height * (0.25 + j * 0.25),
+                    amplitude: 45 + j * 20,
+                    speed: 0.008 + j * 0.003,
+                    phase: j * 2
+                });
+            }
+
+            function drawFrame() {
+                if (canvasRunning) {
+                    tick += 1;
+                    const bgGrad = ctx.createRadialGradient(width * 0.5, height * 0.2, 10, width * 0.5, height * 0.5, Math.max(width, height) * 0.85);
+                    bgGrad.addColorStop(0, '#171209');
+                    bgGrad.addColorStop(0.55, '#090806');
+                    bgGrad.addColorStop(1, '#030303');
+                    ctx.fillStyle = bgGrad;
+                    ctx.fillRect(0, 0, width, height);
+
+                    ribbons.forEach((rib, idx) => {
+                        ctx.beginPath();
+                        for (let x = 0; x <= width; x += 24) {
+                            const y = rib.yOffset + Math.sin(x * 0.003 + tick * rib.speed + rib.phase) * rib.amplitude
+                                      + Math.cos(x * 0.0015 - tick * rib.speed) * (rib.amplitude * 0.5);
+                            if (x === 0) ctx.moveTo(x, y);
+                            else ctx.lineTo(x, y);
+                        }
+                        ctx.strokeStyle = idx === 1 ? 'rgba(212, 175, 55, 0.09)' : 'rgba(245, 222, 155, 0.05)';
+                        ctx.lineWidth = 28 + idx * 14;
+                        ctx.stroke();
+                    });
+
+                    particles.forEach((p) => {
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.pulse += 0.03;
+
+                        if (p.y < -20) p.y = height + 20;
+                        if (p.x < -20) p.x = width + 20;
+                        if (p.x > width + 20) p.x = -20;
+
+                        const currentAlpha = p.alpha * (0.65 + 0.35 * Math.sin(p.pulse));
+
+                        if (p.isBokeh) {
+                            const rad = p.r * 5.5;
+                            const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, rad);
+                            g.addColorStop(0, `rgba(247, 231, 180, ${currentAlpha * 0.35})`);
+                            g.addColorStop(0.6, `rgba(212, 175, 55, ${currentAlpha * 0.12})`);
+                            g.addColorStop(1, 'rgba(212, 175, 55, 0)');
+                            ctx.fillStyle = g;
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, rad, 0, Math.PI * 2);
+                            ctx.fill();
+                        } else {
+                            ctx.fillStyle = `rgba(245, 224, 162, ${currentAlpha})`;
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                    });
+                }
+                requestAnimationFrame(drawFrame);
+            }
+            drawFrame();
+        }
+
+        window.toggleCanvasMotion = function() {
+            canvasRunning = !canvasRunning;
+            const icon = document.getElementById('motion-icon');
+            icon.className = canvasRunning ? "fa-solid fa-wand-magic-sparkles text-gold-300" : "fa-solid fa-pause text-stone-400";
+            showToast(canvasRunning ? "Fondo dorado en movimiento activado ✨" : "Fondo animado en pausa");
+        };
+
+        // ---------------------------------------------------------------------
+        // STARTUP ON WINDOW LOAD
+        // ---------------------------------------------------------------------
+        window.addEventListener('storage', function(e) {
+            if (e.key === STORAGE_KEY_APPTS) {
+                appointments = loadSavedAppointments();
+                renderTimeSlots();
+                renderCalendarGrid();
+                renderAdminViews();
+            } else if (e.key === STORAGE_KEY_CATALOG) {
+                catalogData = loadSavedCatalog();
+                initCalculatorUI();
+            }
+        });
+
+        window.onload = function() {
+            initLuxuryBackgroundCanvas();
+            initCalculatorUI();
+            initFirebaseSync();
+        };
+    </script>
+</body>
+</html>
